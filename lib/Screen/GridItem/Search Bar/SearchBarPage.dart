@@ -37,25 +37,13 @@ class SearchBarPage extends StatelessWidget {
                           onTap: () {
                             switch(index){
                               case 0:
-                                Get.toNamed(Routes.simpleListScreen);
+                                Get.toNamed(Routes.simpleSearchBarScreen);
                                 break;
                               case 1:
-                                Get.toNamed(Routes.bouncyListScreen);
+                                Get.toNamed(Routes.materialSearchBarScreen);
                                 break;
                               case 2:
-                                Get.toNamed(Routes.slidableListScreen);
-                                break;
-                              case 3:
-                                Get.toNamed(Routes.swappableListScreen);
-                                break;
-                              case 4:
-                                Get.toNamed(Routes.reorderableListScreen);
-                                break;
-                              case 5:
-                                Get.toNamed(Routes.expandableListScreen);
-                                break;
-                              case 6:
-                                Get.toNamed(Routes.selectionListScreen);
+                                Get.toNamed(Routes.toolbarSearchBarScreen);
                                 break;
                             }
                           },

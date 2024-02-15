@@ -44,6 +44,9 @@ import 'package:flutter_ui_components/Screen/GridItem/Side%20Menu/SideMenuPage.d
 import 'package:flutter_ui_components/Screen/GridItem/SliverAppbar/SliverAppbarItem/AnimatedSliverAppBar.dart';
 import 'package:flutter_ui_components/Screen/GridItem/SliverAppbar/SliverAppbarItem/SimpleSliverAppBar.dart';
 import 'package:flutter_ui_components/Screen/GridItem/SliverAppbar/SliverAppbarPage.dart';
+import 'package:flutter_ui_components/Screen/GridItem/Social%20Login/SocialLoginItem/FacebookLogin.dart';
+import 'package:flutter_ui_components/Screen/GridItem/Social%20Login/SocialLoginItem/FirebasePhoneAuthentication.dart';
+import 'package:flutter_ui_components/Screen/GridItem/Social%20Login/SocialLoginItem/GoogleLogin.dart';
 import 'package:flutter_ui_components/Screen/GridItem/Social%20Login/SocialLoginPage.dart';
 import 'package:flutter_ui_components/Screen/GridItem/Splash%20Screen/SplashItem/AnimatedSplashScreen.dart';
 import 'package:flutter_ui_components/Screen/GridItem/Splash%20Screen/SplashItem/GradiantSplashScreen.dart';
@@ -142,5 +145,8 @@ class Screens{
     GetPage(name: Routes.textFiledwithbasicpropertyScreen, page: () => TextFiledwithbasicproperty()),
     GetPage(name: Routes.textFieldwithIconScreen, page: () => TextFieldwithIcon()),
     GetPage(name: Routes.colorFilledwithbarderTextFieldScreen, page: () => ColorFilledwithbarderTextField()),
+    GetPage(name: Routes.firebasePhoneAuthenticationScreen, page: () => FirebasePhoneAuthentication()),
+    GetPage(name: Routes.googleLoginScreen, page: () => GoogleLogin()),
+    GetPage(name: Routes.facebookLoginScreen, page: () => FacebookLogin()),
   ];
 }

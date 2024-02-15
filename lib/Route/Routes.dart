@@ -70,4 +70,7 @@ class Routes{
   static const textFiledwithbasicpropertyScreen = '/textFiledwithbasicpropertyScreen';
   static const textFieldwithIconScreen = '/textFieldwithIconScreen';
   static const colorFilledwithbarderTextFieldScreen = '/colorFilledwithbarderTextFieldScreen';
+  static const firebasePhoneAuthenticationScreen = '/firebasePhoneAuthenticationScreen';
+  static const googleLoginScreen = '/googleLoginScreen';
+  static const facebookLoginScreen = '/facebookLoginScreen';
 }

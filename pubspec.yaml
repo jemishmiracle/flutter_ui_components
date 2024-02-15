@@ -41,6 +41,7 @@ dependencies:
   carousel_slider:
   google_fonts:
   fluttertoast: ^8.1.1
+  percent_indicator:
 
 dev_dependencies:
   flutter_test:

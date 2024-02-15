@@ -37,13 +37,13 @@ class SocialLoginPage extends StatelessWidget {
                           onTap: () {
                             switch(index){
                               case 0:
-                                Get.toNamed(Routes.simpleSearchBarScreen);
+                                Get.toNamed(Routes.firebasePhoneAuthenticationScreen);
                                 break;
                               case 1:
-                                Get.toNamed(Routes.materialSearchBarScreen);
+                                Get.toNamed(Routes.googleLoginScreen);
                                 break;
                               case 2:
-                                Get.toNamed(Routes.toolbarSearchBarScreen);
+                                Get.toNamed(Routes.facebookLoginScreen);
                                 break;
                             }
                           },

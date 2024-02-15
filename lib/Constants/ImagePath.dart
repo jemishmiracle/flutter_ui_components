@@ -189,9 +189,9 @@ class ImagePath{
   static const pageViewImg6 = 'assets/Image/pageviewImg6.png';
   static const bgImg2 = 'assets/Image/bgImg1.png';
   static const buttonbgImg = 'assets/Image/buttonbgImg.png';
-  // static const sliverImg = 'assets/Image/sliverImg.png';
-  // static const sliverImg = 'assets/Image/sliverImg.png';
-  // static const sliverImg = 'assets/Image/sliverImg.png';
+  static const socialBgImg = 'assets/Image/socialbgImg.png';
+  static const searchBgImg1 = 'assets/Image/searchbgImg1.png';
+  static const searchBgImg2 = 'assets/Image/searchbgImg2.png';
   // static const sliverImg = 'assets/Image/sliverImg.png';
   // static const sliverImg = 'assets/Image/sliverImg.png';
   // static const sliverImg = 'assets/Image/sliverImg.png';

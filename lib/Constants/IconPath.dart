@@ -94,9 +94,9 @@ class IconPath {
   static const bottmMenuIconImg16 = 'assets/icon/bottmMenuIconImg16.png';
   static const bottmMenuIconImg17 = 'assets/icon/bottmMenuIconImg17.png';
   static const bottmMenuIconImg18 = 'assets/icon/bottmMenuIconImg18.png';
-  // static const bottmMenuIconImg18 = 'assets/icon/bottmMenuIconImg18.png';
-  // static const bottmMenuIconImg18 = 'assets/icon/bottmMenuIconImg18.png';
-  // static const bottmMenuIconImg18 = 'assets/icon/bottmMenuIconImg18.png';
+  static const textfiledIconImg1 = 'assets/icon/textfiledIconImg1.png';
+  static const textfiledIconImg2 = 'assets/icon/textfiledIconImg2.png';
+  static const textfiledIconImg3 = 'assets/icon/textfiledIconImg3.png';
   // static const bottmMenuIconImg18 = 'assets/icon/bottmMenuIconImg18.png';
   // static const bottmMenuIconImg18 = 'assets/icon/bottmMenuIconImg18.png';
   // static const bottmMenuIconImg18 = 'assets/icon/bottmMenuIconImg18.png';
