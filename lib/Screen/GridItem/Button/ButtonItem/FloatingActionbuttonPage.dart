@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:flutter_ui_components/Constants/ImagePath.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -35,36 +36,37 @@ class FloatingActionbuttonPage extends StatelessWidget {
                   Padding(padding: EdgeInsets.only(top: 3.w),
                     child: iconFloatingActionButton(
                         context: context,iconColor: Theme.of(context).primaryColorDark,
-                        borderRadius: 20.w,
+                        borderRadius: 20.w,toastText: 'BUTTON Pressed!',
                         title: "Icon Floating Action Button",),
                   ),
                   Padding(padding: EdgeInsets.only(top: 3.w),
                     child: labelFloatingActionButton(
                         context: context,
-                        text: "Add",
+                        text: "Add",toastText: 'BUTTON Pressed!',
                         borderRadius: 20.w,
                         title: "Label Floating Action Button",),
                   ),
                   Padding(padding: EdgeInsets.only(top: 3.w),
                     child: rectangleBorderButton(
                         context: context,
-                        borderRadius: 20.w,
+                        borderRadius: 20.w,toastText: 'BUTTON Pressed!',
                         title: "Circle Border",),
                   ),
                   Padding(padding: EdgeInsets.only(top: 3.w),
                     child: iconFloatingActionButton(
                         context: context,iconColor: Theme.of(context).primaryColorDark,
-                        borderRadius: 2.w,
+                        borderRadius: 2.w,toastText: 'BUTTON Pressed!',
                         title: "Rounded Rectangle Border",),
                   ),
                   Padding(padding: EdgeInsets.only(top: 3.w),
                     child: iconFloatingActionButton(
-                        context: context,iconColor: Theme.of(context).bottomAppBarColor,borderRadius: 2.w,
+                        context: context,toastText: 'BUTTON Pressed!',
+                      iconColor: Theme.of(context).bottomAppBarColor,borderRadius: 2.w,
                         title: "Icon Color",),
                   ),
                   Padding(padding: EdgeInsets.only(top: 3.w),
                     child: iconLabelFloatingActionButton(
-                        context: context,
+                        context: context,toastText: 'Edit Pressed!',
                         title: "Icon with Label",
                         text: "Edit",
                     ),
@@ -80,7 +82,7 @@ class FloatingActionbuttonPage extends StatelessWidget {
 
   Widget iconFloatingActionButton({
     required BuildContext context,
-    required String title,
+    required String title,String? toastText,
     double? borderRadius,
     Color? iconColor,}){
     return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -88,7 +90,14 @@ class FloatingActionbuttonPage extends StatelessWidget {
         Text(title,style: TextStyle(color: Theme.of(context).bottomAppBarColor,fontSize: 12.sp),),
         CircleAvatar(radius: 6.w,backgroundColor: Colors.transparent,
           child: FloatingActionButton(
-              onPressed: () {},shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius ?? 0)),
+              onPressed: () {
+                showToast(
+                  toastText,backgroundColor: Theme.of(context).primaryColorDark,
+                  textStyle: TextStyle(color: Theme.of(context).indicatorColor),
+                  position: StyledToastPosition.top,textAlign: TextAlign.left,
+                  context: context,alignment: Alignment.topLeft,fullWidth: true,
+                );
+              },shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius ?? 0)),
               backgroundColor: Theme.of(context).secondaryHeaderColor,
               child:Icon(Icons.edit,color:iconColor,size: 6.w,),
           ),
@@ -99,7 +108,7 @@ class FloatingActionbuttonPage extends StatelessWidget {
 
   Widget labelFloatingActionButton({
     required BuildContext context,
-    required String text,
+    required String text,String? toastText,
     required String title,
     double? borderRadius}){
      return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -107,7 +116,14 @@ class FloatingActionbuttonPage extends StatelessWidget {
         Text(title,style: TextStyle(color: Theme.of(context).bottomAppBarColor,fontSize: 12.sp),),
         CircleAvatar(radius: 6.w,backgroundColor: Colors.transparent,
           child: FloatingActionButton(
-            onPressed: () {},shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius ?? 0)),
+            onPressed: () {
+              showToast(
+                toastText,backgroundColor: Theme.of(context).primaryColorDark,
+                textStyle: TextStyle(color: Theme.of(context).indicatorColor),
+                position: StyledToastPosition.top,textAlign: TextAlign.left,
+                context: context,alignment: Alignment.topLeft,fullWidth: true,
+              );
+            },shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius ?? 0)),
             backgroundColor: Theme.of(context).secondaryHeaderColor,
             child:Text(text,style: TextStyle(color: Theme.of(context).primaryColorDark),),
           ),
@@ -118,14 +134,21 @@ class FloatingActionbuttonPage extends StatelessWidget {
 
   Widget rectangleBorderButton({
     required BuildContext context,
-    required String title,
+    required String title,String? toastText,
     double? borderRadius}){
     return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(title,style: TextStyle(color: Theme.of(context).bottomAppBarColor,fontSize: 12.sp),),
         CircleAvatar(radius: 6.w,backgroundColor: Colors.transparent,
           child: FloatingActionButton(
-            onPressed: () {},shape: RoundedRectangleBorder(
+            onPressed: () {
+              showToast(
+                toastText,backgroundColor: Theme.of(context).primaryColorDark,
+                textStyle: TextStyle(color: Theme.of(context).indicatorColor),
+                position: StyledToastPosition.top,textAlign: TextAlign.left,
+                context: context,alignment: Alignment.topLeft,fullWidth: true,
+              );
+            },shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(borderRadius ?? 0),
                side: BorderSide(color: Theme.of(context).bottomAppBarColor)
           ),
@@ -139,7 +162,7 @@ class FloatingActionbuttonPage extends StatelessWidget {
 
   Widget iconLabelFloatingActionButton({
     required BuildContext context,
-    required String title,
+    required String title,String? toastText,
     required String text,}){
     return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -148,7 +171,14 @@ class FloatingActionbuttonPage extends StatelessWidget {
           children: [
             SizedBox(height: 6.h,width: 23.w,
               child: FloatingActionButton(
-                onPressed: () {},shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.w)),
+                onPressed: () {
+                  showToast(
+                    toastText,backgroundColor: Theme.of(context).primaryColorDark,
+                    textStyle: TextStyle(color: Theme.of(context).indicatorColor),
+                    position: StyledToastPosition.top,textAlign: TextAlign.left,
+                    context: context,alignment: Alignment.topLeft,fullWidth: true,
+                  );
+                },shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.w)),
                 backgroundColor: Theme.of(context).secondaryHeaderColor,
                 child:Row(mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -160,7 +190,14 @@ class FloatingActionbuttonPage extends StatelessWidget {
             ),SizedBox(width: 3.w,),
             SizedBox(height: 6.h,width: 23.w,
               child: FloatingActionButton(
-                onPressed: () {},shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2.w)),
+                onPressed: () {
+                  showToast(
+                    toastText,backgroundColor: Theme.of(context).primaryColorDark,
+                    textStyle: TextStyle(color: Theme.of(context).indicatorColor),
+                    position: StyledToastPosition.top,textAlign: TextAlign.left,
+                    context: context,alignment: Alignment.topLeft,fullWidth: true,
+                  );
+                },shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2.w)),
                 backgroundColor: Theme.of(context).secondaryHeaderColor,
                 child:Row(mainAxisAlignment: MainAxisAlignment.center,
                   children: [

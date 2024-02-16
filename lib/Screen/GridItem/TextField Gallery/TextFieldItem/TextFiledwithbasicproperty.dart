@@ -8,7 +8,6 @@ class TextFiledwithbasicproperty extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController controller = TextEditingController();
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -17,7 +16,7 @@ class TextFiledwithbasicproperty extends StatelessWidget {
         title: Text(title,style: TextStyle(color: Theme.of(context).primaryColorDark,fontSize: 14.sp,fontWeight: FontWeight.w600),),
         backgroundColor: Theme.of(context).secondaryHeaderColor,
       ),
-      body: Padding(padding: EdgeInsets.only(left: 1.w),
+      body: Padding(padding: EdgeInsets.only(left: 2.w,top: 3.w,right: 2.w,bottom: 3.w),
         child: SingleChildScrollView(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -39,7 +38,7 @@ class TextFiledwithbasicproperty extends StatelessWidget {
                   hintText: 'Hint Text',
                   labelText: 'Textfield with error text',
                   hintColor: Theme.of(context).hoverColor,
-                 errorText: 'This is error text',
+                 errorText: 'This is error text',errorTextColor: Theme.of(context).dividerColor
               ),
               textField(
                   context: context,obscureText: false,
@@ -62,19 +61,12 @@ class TextFiledwithbasicproperty extends StatelessWidget {
                   hintColor: Theme.of(context).hoverColor,textLength: 8,
                   helperText: 'No more than 8 characters.',helperTextColor: Theme.of(context).indicatorColor,
               ),
-             /* Padding(padding: EdgeInsets.only(top: 2.w),
-                child: textField(
-                    context: context,obscureText: false,controller: controller,minLine: 4,
-                    labelText: 'Multiline TextArea',keyboardType: TextInputType.multiline
+              Padding(padding: EdgeInsets.only(top: 4.w),
+                child: textArea(
+                  context: context,
+                  radius: 1.w,labelText: 'Text Area',labelColor: Theme.of(context).secondaryHeaderColor,
                 ),
-              ),*/
-              // Padding(padding: EdgeInsets.only(top: 2.w),
-              //   child: textArea(
-              //       labelText: 'Multiline TextArea',
-              //       context: context,
-              //       controller: controller,
-              //       keyboardType: TextInputType.multiline, minLine: 4, maxLine: 6),
-              // ),
+              ),
             ],
           ),
         ),
@@ -84,21 +76,12 @@ class TextFiledwithbasicproperty extends StatelessWidget {
 
   Widget textField({
     required BuildContext context,
-    String? hintText,
-    String? labelText,
-    String? helperText,
-    String? errorText,
-    String? prefixText,
-    String? suffixText,
-    Color? hintColor,
-    int? minLine,
-    int? maxLine,
-    TextEditingController? controller,
-    required bool obscureText,
-    Color? helperTextColor,
-    int? textLength,
-    TextInputType? keyboardType,
-    Color? prefixTextColor,}){
+    String? hintText, String? labelText,
+    String? helperText, String? errorText,
+    String? prefixText, String? suffixText,
+    Color? hintColor, required bool obscureText,Color? errorTextColor,
+    Color? helperTextColor, int? textLength,Color? borderColor,
+    TextInputType? keyboardType, Color? prefixTextColor,}){
     return TextField(
       cursorColor: Theme.of(context).secondaryHeaderColor,
       decoration: InputDecoration(
@@ -106,24 +89,26 @@ class TextFiledwithbasicproperty extends StatelessWidget {
         helperText: helperText,errorText: errorText,helperStyle: TextStyle(color: helperTextColor),
         labelText: labelText,labelStyle: TextStyle(color: Theme.of(context).secondaryHeaderColor),
         prefix: Text(prefixText ?? "",style: TextStyle(color: prefixTextColor,fontSize: 10.sp),),
-        suffix: Text(suffixText ?? ""),
+        suffix: Text(suffixText ?? ""),errorStyle: TextStyle(color: errorTextColor),
+        enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).splashColor),),
+        errorBorder: UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).dividerColor),),
       ),keyboardType: keyboardType,maxLength: textLength,obscureText:obscureText,
-      minLines: minLine,maxLines: maxLine,
     );
   }
 
   Widget textArea({
-    required labelText,
     required BuildContext context,
-    required TextEditingController? controller,
-    required TextInputType? keyboardType,
-    required minLine,required maxLine,}){
-    return TextFormField(
-      controller: controller,
+    double? radius,String? labelText,Color? labelColor,}){
+    return TextField(
       decoration: InputDecoration(
-        labelText:labelText,labelStyle: TextStyle(color: Theme.of(context).secondaryHeaderColor),
+       border: InputBorder.none,
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: Theme.of(context).splashColor),
+        ),
+        labelText: labelText,labelStyle: TextStyle(color: labelColor),
       ),
-      keyboardType: keyboardType,minLines: minLine,maxLines: maxLine,
+      minLines: 2,
+      maxLines: 9,style: TextStyle(color: Theme.of(context).indicatorColor),
     );
   }
 }

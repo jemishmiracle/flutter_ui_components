@@ -16,8 +16,9 @@ class _DropdownButtonPageState extends State<DropdownButtonPage> {
   String simpleValue ='One';
   String? dropdownValue;
   var simpleItem = ["One","Two","Free","Four","Five"];
+  var dropDown = ["One","Two","Free","Four"];
   String scrollableValue = 'One';
-  var scrollItem = ["One","Two","Free","Four","Five","Six","Seven","Eight","Nine","Ten"];
+  var scrollItem = ["One","Two","Free","Four","Can","I","Have","A","Little","Bit","More","Five","Six","Seven","Eight","Nine","Ten"];
   String text =
       "A dropdown button lets the user select from a number of""\n"
       " items. The button shows the currently selected item as ""\n"
@@ -73,7 +74,7 @@ class _DropdownButtonPageState extends State<DropdownButtonPage> {
                           child: DropdownButton<String>(
                             value: dropdownValue,dropdownColor: Theme.of(context).primaryColorDark,
                             hint: Text( "Choose",style: TextStyle(color: Theme.of(context).indicatorColor),),
-                            items: simpleItem.map((e) =>
+                            items: dropDown.map((e) =>
                                 DropdownMenuItem<String>(
                                   child: Text(e,style: TextStyle(color: Theme.of(context).indicatorColor),),
                                   value: e,

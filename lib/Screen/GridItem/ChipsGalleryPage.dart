@@ -4,10 +4,15 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import '../../Constants/ImagePath.dart';
 
-class ChipsGalleryPage extends StatelessWidget {
+class ChipsGalleryPage extends StatefulWidget {
    String title;
    ChipsGalleryPage({super.key,this.title = 'Chips Gallery'});
 
+  @override
+  State<ChipsGalleryPage> createState() => _ChipsGalleryPageState();
+}
+
+class _ChipsGalleryPageState extends State<ChipsGalleryPage> {
   @override
   Widget build(BuildContext context) {
     String title1 =
@@ -42,7 +47,7 @@ class ChipsGalleryPage extends StatelessWidget {
         leading: IconButton(
           onPressed: () => Get.back(),
           icon: Icon(Icons.arrow_back,color: Theme.of(context).primaryColorDark,),),
-        title: Text(title,style: TextStyle(color: Theme.of(context).primaryColorDark,fontSize: 14.sp,fontWeight: FontWeight.w600),),
+        title: Text(widget.title,style: TextStyle(color: Theme.of(context).primaryColorDark,fontSize: 14.sp,fontWeight: FontWeight.w600),),
         backgroundColor: Theme.of(context).secondaryHeaderColor,
       ),
       body:SafeArea(
@@ -139,20 +144,22 @@ class ChipsGalleryPage extends StatelessWidget {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20.w),
                               ),
-                              child: ChoiceChip(
+                              child: FilterChip(
                                 label: Text(fruits[index],style: TextStyle(fontSize: 10.sp),),
                                 side: BorderSide.none,
                                 backgroundColor: Theme.of(context).selectedRowColor,
                                 showCheckmark: true,selectedColor: Theme.of(context).backgroundColor,
                                 selected: item.contains(fruits[index]),
                                 onSelected: (value) {
-                                  if(item.contains(fruits[index])){
-                                    item.remove(fruits[index]);
-                                  }
-                                  else{
-                                    item.add(fruits[index]);
-                                  }
-                                  print(item.toString());
+                                  setState(() {
+                                    if(item.contains(fruits[index])){
+                                      item.remove(fruits[index]);
+                                    }
+                                    else{
+                                      item.add(fruits[index]);
+                                    }
+                                    print(item.toString());
+                                  });
                                 },
                               ),
                             ),

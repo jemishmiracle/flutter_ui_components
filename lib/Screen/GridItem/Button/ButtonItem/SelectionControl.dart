@@ -12,10 +12,9 @@ class SelectionControl extends StatefulWidget {
 }
 
 class _SelectionControlState extends State<SelectionControl> {
-   bool first = true;
-   bool second =false;
-   int radioValue = 1;
+   List<bool> isClick =[false,false];
    bool switchFirst = false;
+   String? selectedRadio;
    String checkBoxText =
        "Checkboxes allow the user to select multiple options form a""\n"
        "set. A normal checkbox's value is true or false and a tristate""\n"
@@ -50,25 +49,12 @@ class _SelectionControlState extends State<SelectionControl> {
                     child: Text("--> CheckBox",style: TextStyle(color: Theme.of(context).secondaryHeaderColor,fontSize: 15.sp),),
                   ),
                   Padding(padding: EdgeInsets.only(left: 2.w),
-                    child: Row(
-                      children: [
-                        Checkbox(
-                          value: first,side: BorderSide(color: Theme.of(context).cardColor,width: 2),
-                          activeColor: Theme.of(context).secondaryHeaderColor,
-                          onChanged: (value) {
-                            first = value!;
-                            setState(() {});
-                          },
-                        ),
-                        Checkbox(
-                          value: second,side: BorderSide(color: Theme.of(context).cardColor,width: 2),
-                          activeColor: Theme.of(context).secondaryHeaderColor,
-                          onChanged: (value) {
-                            second = value!;
-                            setState(() {});
-                          },
-                        ),
-                      ],
+                    child: Wrap(
+                      children: List.generate(2, (index) =>
+                          Checkbox(
+                            value: isClick[index],side: BorderSide(color: Theme.of(context).cardColor,width: 2),
+                            activeColor: Theme.of(context).secondaryHeaderColor,
+                            onChanged: (value) {isClick[index] = value!;setState(() {});},),),
                     ),
                   ),
                   Padding(padding: EdgeInsets.only(top: 2.w,left: 2.w),
@@ -79,14 +65,18 @@ class _SelectionControlState extends State<SelectionControl> {
                     child:Text("--> RadioButton",style: TextStyle(color: Theme.of(context).secondaryHeaderColor,fontSize: 15.sp),),
                   ),
                   Padding(padding: EdgeInsets.only(left: 2.w),
-                    child: Radio(
-                        value: 1,
-                        groupValue: radioValue,
-                        onChanged: (val) {
-                          setState(() {
-                            radioValue = val!;
-                          });
-                        },
+                    child: Row(
+                      children: [
+                        Radio(
+                          value: "Male", groupValue: selectedRadio,activeColor:Theme.of(context).indicatorColor,
+                          onChanged: (value) {setState(() {selectedRadio = value;});},), SizedBox(width: 3.w,),
+                        Radio(
+                          value: "Female", groupValue: selectedRadio,activeColor:Theme.of(context).indicatorColor,
+                          onChanged: (value) {setState(() {selectedRadio = value;});},), SizedBox(width: 3.w,),
+                        Radio(
+                          groupValue: selectedRadio, value: "Other",activeColor:Theme.of(context).indicatorColor,
+                          onChanged: (value) {setState(() {selectedRadio = value;});},),
+                      ],
                     ),
                   ),
                   Padding(padding: EdgeInsets.only(top: 2.w,left: 2.w),
@@ -100,21 +90,22 @@ class _SelectionControlState extends State<SelectionControl> {
                     child: Row(
                       children: [
                         Switch(
-                          value: switchFirst,activeColor: Theme.of(context).primaryColor,
-                          onChanged:(value) {
-                           setState(() {
-                             switchFirst = !switchFirst;
-                           });
-                          },
-                        ),SizedBox(width: 2.w,),
+                          activeTrackColor: Theme.of(context).splashColor,
+                          inactiveThumbColor: Theme.of(context).primaryColorDark,inactiveTrackColor: Theme.of(context).highlightColor,
+                          trackOutlineColor: MaterialStatePropertyAll(Theme.of(context).primaryColorDark),
+                          value: switchFirst,activeColor: Theme.of(context).cardColor,
+                          onChanged:(value) {setState(() {switchFirst = !switchFirst;});},),
+                        SizedBox(width: 2.w,),
                         Switch(
-                          value: true,activeColor: Theme.of(context).primaryColor,
-                          onChanged:(value) {},
-                        ),SizedBox(width: 2.w,),
+                          value: true, activeTrackColor: Theme.of(context).splashColor,
+                          inactiveThumbColor: Theme.of(context).primaryColorDark,inactiveTrackColor: Theme.of(context).highlightColor,
+                          trackOutlineColor: MaterialStatePropertyAll(Theme.of(context).primaryColorDark),
+                          activeColor: Theme.of(context).cardColor, onChanged:(value) {},),
+                        SizedBox(width: 2.w,),
                         Switch(
-                          value: false,activeColor: Theme.of(context).primaryColor,
-                          onChanged:(value) {},
-                        ),
+                          value: false, onChanged:(value) {},
+                          inactiveThumbColor: Theme.of(context).primaryColorDark,inactiveTrackColor: Theme.of(context).highlightColor,
+                          trackOutlineColor: MaterialStatePropertyAll(Theme.of(context).primaryColorDark),),
                       ],
                     ),
                   ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:flutter_ui_components/Constants/ImagePath.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -34,15 +35,15 @@ class OutlineButtonPage extends StatelessWidget {
                   Padding(padding: EdgeInsets.only(top: 4.w), child: Divider(height: 1.w,color: Theme.of(context).indicatorColor,),),
                   Padding(padding: EdgeInsets.only(top: 4.w),
                     child: allOutlineButton(
-                        context: context, conWidth: 45.w,borderRadius: 1.w, text: "OUTLINE BUTTON"),),
+                        context: context, conWidth: 45.w,borderRadius: 1.w, text: "OUTLINE BUTTON",toastText: 'OUTLINE BUTTON Pressed!',),),
                   Padding(padding: EdgeInsets.only(top: 4.w),
                     child: disableButton(context: context, text: "DISABLE", disableButtons: buttonenabled,conWidth: 28.w),),
                   Padding(padding: EdgeInsets.only(top: 4.w),
-                    child: iconButton(context: context, text: "OUTLINE BUTTON"),),
+                    child: iconButton(context: context, text: "OUTLINE BUTTON",toastText: 'OUTLINE BUTTON Pressed!',),),
                   Padding(padding: EdgeInsets.only(top: 4.w),
                     child: disableIconButton(context: context, text: "OUTLINE BUTTON", disableButtons: buttonenabled),),
                   Padding(padding: EdgeInsets.only(top: 4.w),
-                    child: allOutlineButton(context: context, conWidth: 35.w,borderRadius: 20.w, text: "Circle Border"),),
+                    child: allOutlineButton(context: context, conWidth: 35.w,borderRadius: 20.w, text: "Circle Border",toastText: 'Circle Border Pressed!',),),
                   Padding(padding: EdgeInsets.only(top: 4.w),
                     child: disableButton(context: context, text: "Disable", disableButtons: buttonenabled,conWidth: 26.w),),
                 ],
@@ -60,13 +61,20 @@ class OutlineButtonPage extends StatelessWidget {
     required String text,
     Color? buttonColor,
     Gradient? gradientColor,
-    double? conRadius,
+    double? conRadius,String? toastText,
     double? borderRadius,}) {
     return Container(
       height:5.h,width:conWidth,
       decoration: BoxDecoration(gradient: gradientColor,borderRadius: BorderRadius.circular(conRadius ?? 0)),
       child: OutlinedButton(
-          onPressed: () {},
+          onPressed: () {
+            showToast(
+              toastText,backgroundColor: Theme.of(context).primaryColorDark,
+              textStyle: TextStyle(color: Theme.of(context).indicatorColor),
+              position: StyledToastPosition.top,textAlign: TextAlign.left,
+              context: context,alignment: Alignment.topLeft,fullWidth: true,
+            );
+          },
           style: ButtonStyle(
              shape: MaterialStatePropertyAll(RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(borderRadius ?? 0),
@@ -98,12 +106,19 @@ class OutlineButtonPage extends StatelessWidget {
   }
 
   Widget iconButton({
-    required BuildContext context,
+    required BuildContext context,String? toastText,
     required String text,}) {
     return Container(
       height: 5.h, width: 51.w,
       child: OutlinedButton(
-          onPressed: () {},
+          onPressed: () {
+            showToast(
+              toastText,backgroundColor: Theme.of(context).primaryColorDark,
+              textStyle: TextStyle(color: Theme.of(context).indicatorColor),
+              position: StyledToastPosition.top,textAlign: TextAlign.left,
+              context: context,alignment: Alignment.topLeft,fullWidth: true,
+            );
+          },
           style: ButtonStyle(
               shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(1.w), side: BorderSide(color: Theme.of(context).bottomAppBarColor)

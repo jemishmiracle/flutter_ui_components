@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:flutter_ui_components/Constants/ImagePath.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -28,7 +29,7 @@ class ElevatedButtonPage extends StatelessWidget {
                   Padding(padding: EdgeInsets.only(top: 3.w),
                     child: allElevatedButton(
                         context: context,
-                        conWidth: 47.w,
+                        conWidth: 47.w,toastText: 'ELEVATED BUTTON Pressed!',
                         buttonColor: Theme.of(context).secondaryHeaderColor,
                         borderRadius: 1.w,
                         text: "ELEVATED BUTTON"
@@ -37,7 +38,7 @@ class ElevatedButtonPage extends StatelessWidget {
                   Padding(padding: EdgeInsets.only(top: 4.w),
                     child: allElevatedButton(
                         context: context,
-                        conWidth: 46.w,
+                        conWidth: 46.w,toastText: 'DISABLED BUTTON Pressed!',
                         buttonColor: Theme.of(context).disabledColor,
                         borderRadius: 1.w,
                         text: "DISABLED BUTTON"
@@ -47,7 +48,7 @@ class ElevatedButtonPage extends StatelessWidget {
                   Padding(padding: EdgeInsets.only(top: 4.w),
                     child: roundedBorderButton(
                         context: context,
-                        conWidth: 38.w,
+                        conWidth: 38.w,toastText: 'Outline Border ELEVATED BUTTON Pressed!',
                         buttonColor: Theme.of(context).secondaryHeaderColor,
                         borderRadius: 1.w,
                         text: "Outline Border",
@@ -57,7 +58,7 @@ class ElevatedButtonPage extends StatelessWidget {
                   Padding(padding: EdgeInsets.only(top: 4.w),
                     child: allElevatedButton(
                         context: context,
-                        conWidth: 43.w,
+                        conWidth: 43.w,toastText: 'Rectangle Border ELEVATED BUTTON Pressed!',
                         buttonColor: Theme.of(context).secondaryHeaderColor,
                         borderRadius: 1.w,
                         text: "Rectangle Border"
@@ -66,7 +67,7 @@ class ElevatedButtonPage extends StatelessWidget {
                   Padding(padding: EdgeInsets.only(top: 4.w),
                     child: allElevatedButton(
                         context: context,
-                        conWidth: 41.w,
+                        conWidth: 41.w,toastText: 'Rounded Border ELEVATED BUTTON Pressed!',
                         buttonColor: Theme.of(context).secondaryHeaderColor,
                         borderRadius: 20.w,
                         text: "Rounded Border"
@@ -76,7 +77,7 @@ class ElevatedButtonPage extends StatelessWidget {
                   Padding(padding: EdgeInsets.only(top: 4.w),
                     child: allElevatedButton(
                         context: context,
-                        conWidth: 45.w,
+                        conWidth: 45.w,toastText: 'Rectangle fill color ELEVATED BUTTON Pressed!',
                         buttonColor: Theme.of(context).secondaryHeaderColor,
                         borderRadius: 1.w,
                         text: "Rectangle fill color"
@@ -85,14 +86,14 @@ class ElevatedButtonPage extends StatelessWidget {
                   Padding(padding: EdgeInsets.only(top: 4.w),
                     child: allElevatedButton(
                         context: context,
-                        conWidth: 43.w,
+                        conWidth: 43.w,toastText: 'Rounded fill color ELEVATED BUTTON Pressed!',
                         buttonColor: Theme.of(context).secondaryHeaderColor,
                         borderRadius: 20.w,
                         text: "Rounded fill color"
                     ),
                   ),
                   Padding(padding: EdgeInsets.only(top: 4.w), child: Divider(height: 1.w,color: Theme.of(context).indicatorColor,),),
-                  Padding(padding: EdgeInsets.only(top: 4.w), child: iconButton(context: context, text: "Icon Button"),),
+                  Padding(padding: EdgeInsets.only(top: 4.w), child: iconButton(context: context, text: "Icon Button",toastText: 'Icon Button Pressed!',),),
                   Padding(padding: EdgeInsets.only(top: 4.w), child: disableIconButton(context: context, text: "Icon disabled button", disableButtons: buttonenabled),),
                 ],
               ),
@@ -107,7 +108,7 @@ class ElevatedButtonPage extends StatelessWidget {
     required BuildContext context,
     required double conWidth,
     required String text,
-    Color? buttonColor,
+    Color? buttonColor,String? toastText,
     Gradient? gradientColor,
     double? conRadius,
     double? borderRadius,}) {
@@ -115,7 +116,14 @@ class ElevatedButtonPage extends StatelessWidget {
         height:5.h,width:conWidth,
         decoration: BoxDecoration(gradient: gradientColor,borderRadius: BorderRadius.circular(conRadius ?? 0)),
       child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            showToast(
+              toastText,backgroundColor: Theme.of(context).primaryColorDark,
+              textStyle: TextStyle(color: Theme.of(context).indicatorColor),
+              position: StyledToastPosition.top,textAlign: TextAlign.left,
+              context: context,alignment: Alignment.topLeft,fullWidth: true,
+            );
+          },
           style: ButtonStyle(
           backgroundColor: MaterialStatePropertyAll(buttonColor),
             shape: MaterialStatePropertyAll(RoundedRectangleBorder(
@@ -131,12 +139,19 @@ class ElevatedButtonPage extends StatelessWidget {
     required double conWidth,
     required String text,
     required Color borderColor,
-    Color? buttonColor,
+    Color? buttonColor,String? toastText,
     double? borderRadius,}){
     return Container(
         height: 5.h,width:conWidth,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          showToast(
+            toastText,backgroundColor: Theme.of(context).primaryColorDark,
+            textStyle: TextStyle(color: Theme.of(context).indicatorColor),
+            position: StyledToastPosition.top,textAlign: TextAlign.left,
+            context: context,alignment: Alignment.topLeft,fullWidth: true,
+          );
+        },
         style: ButtonStyle(
           backgroundColor: MaterialStatePropertyAll(buttonColor),
           shape: MaterialStatePropertyAll(RoundedRectangleBorder(
@@ -171,12 +186,19 @@ class ElevatedButtonPage extends StatelessWidget {
   }
 
   Widget iconButton({
-    required BuildContext context,
+    required BuildContext context,String? toastText,
     required String text,}) {
     return Container(
         height: 5.h, width: 40.w,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          showToast(
+            toastText,backgroundColor: Theme.of(context).primaryColorDark,
+            textStyle: TextStyle(color: Theme.of(context).indicatorColor),
+            position: StyledToastPosition.top,textAlign: TextAlign.left,
+            context: context,alignment: Alignment.topLeft,fullWidth: true,
+          );
+        },
         style: ButtonStyle(
           backgroundColor: MaterialStatePropertyAll(Theme.of(context).secondaryHeaderColor),
           shape: MaterialStatePropertyAll(RoundedRectangleBorder(

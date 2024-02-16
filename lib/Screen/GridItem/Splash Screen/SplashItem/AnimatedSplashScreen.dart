@@ -1,6 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_ui_components/Constants/ImagePath.dart';
-import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
 class AnimatedSplashScreen extends StatefulWidget {
@@ -11,13 +12,23 @@ class AnimatedSplashScreen extends StatefulWidget {
 }
 
 class _AnimatedSplashScreenState extends State<AnimatedSplashScreen> {@override
+// void initState() {
+//   // Future.delayed(Duration(seconds: 5),() {
+//   //   Get.back();
+//   // },);
+//   super.initState();
+// }
+double angel = 0;
+
+@override
 void initState() {
-  Future.delayed(Duration(seconds: 5),() {
-    Get.back();
-  },);
+  Timer.periodic(Duration(seconds: 6,), (timer) {
+    setState(() {
+      ++angel;
+    });
+  });
   super.initState();
 }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,12 +45,21 @@ void initState() {
              //       ],
              //     ),
              // ),
-            AnimatedCrossFade(
-                firstChild: Image.asset(ImagePath.dialogImg,fit: BoxFit.cover,height: 20.h,),
-                secondChild:  Text("Welcome",style: TextStyle(color: Theme.of(context).secondaryHeaderColor,fontSize: 28.sp,fontWeight: FontWeight.w600),),
-                crossFadeState: CrossFadeState.showFirst,
-                duration:  Duration(seconds: 2),excludeBottomFocus: true,
-            )
+            // AnimatedCrossFade(
+            //     firstChild: Image.asset(ImagePath.dialogImg,fit: BoxFit.cover,height: 20.h,),
+            //     secondChild:  Text("Welcome",style: TextStyle(color: Theme.of(context).secondaryHeaderColor,fontSize: 28.sp,fontWeight: FontWeight.w600),),
+            //     crossFadeState: CrossFadeState.showFirst,
+            //     duration:  Duration(seconds: 2),excludeBottomFocus: true,
+            // )
+            Transform.rotate(
+              angle: angel,origin: Offset.fromDirection(2.w),
+              child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(ImagePath.dialogImg,fit: BoxFit.cover,height: 20.h,),
+                        Text("Welcome",style: TextStyle(color: Theme.of(context).secondaryHeaderColor,fontSize: 28.sp,fontWeight: FontWeight.w600),),
+                      ],
+                    ),
+            ),
           ],
         ),
       ),

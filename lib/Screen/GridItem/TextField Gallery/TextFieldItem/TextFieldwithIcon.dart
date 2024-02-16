@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ui_components/Constants/IconPath.dart';
-import 'package:flutter_ui_components/Constants/ImagePath.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
@@ -20,15 +19,15 @@ class TextFieldwithIcon extends StatelessWidget {
       ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(1.w),
+          padding: EdgeInsets.only(left: 2.w,top: 3.w,right: 2.w),
           child: SingleChildScrollView(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 iconLabelTextField(context: context,img: IconPath.textfiledIconImg1, hintText:'Hint Text',labelText: 'Label Text'),
                 iconTextField(context: context, labelText: 'Prefix Icon',prefixIcon: Icons.alarm,prefixColor: Theme.of(context).secondaryHeaderColor),
                 iconTextField(
-                    context: context,padding: EdgeInsets.zero,textAlign: TextAlign.start,
-                    labelText: 'Suffix Icon',suffixIcon: Icons.alarm,suffixColor: Theme.of(context).secondaryHeaderColor),
+                    context: context,
+                    hintText: 'Suffix Icon',suffixIcon: Icons.alarm,suffixColor: Theme.of(context).secondaryHeaderColor),
                 iconTextField(
                     context: context,labelText: 'Color Icon',prefixIcon: Icons.alarm,prefixColor: Theme.of(context).dividerColor),
               ],
@@ -43,13 +42,13 @@ class TextFieldwithIcon extends StatelessWidget {
     required BuildContext context,
     String? hintText,
     required String img,
-    String? labelText,
-}){
+    String? labelText,}){
     return TextField(
       decoration: InputDecoration(
         hintText: hintText,hintStyle: TextStyle(color: Theme.of(context).secondaryHeaderColor,fontSize: 11.sp),
         labelStyle: TextStyle(color: Theme.of(context).secondaryHeaderColor,fontSize: 11.sp),labelText: labelText,
         icon: Image.asset(img,fit: BoxFit.cover,height: 3.w,),
+        enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).splashColor),),
       ),
     );
   }
@@ -59,19 +58,15 @@ class TextFieldwithIcon extends StatelessWidget {
     IconData? prefixIcon,
     Color? prefixColor,
     IconData? suffixIcon,
-    TextAlign? textAlign,
-    TextCapitalization? textCapitalization,
-    EdgeInsets? padding,
-    Color? suffixColor,
-    String? labelText,
-}){
-    return TextFormField(
-      textInputAction: TextInputAction.next,
-      textAlign: textAlign ?? TextAlign.center,
-      decoration: InputDecoration(contentPadding: padding,
+    Color? suffixColor,String? hintText,
+    String? labelText,}){
+    return TextField(
+      decoration: InputDecoration(alignLabelWithHint: true,
+        hintText: hintText,hintStyle: TextStyle(color: Theme.of(context).secondaryHeaderColor,fontSize: 11.sp,fontWeight: FontWeight.normal),
         labelText: labelText,labelStyle: TextStyle(color: Theme.of(context).secondaryHeaderColor,fontSize: 11.sp),
-        prefixIcon: Icon(prefixIcon,size: 5.w,color: prefixColor,),
+        prefixIcon: prefixIcon == null ? null : Icon(prefixIcon,size: 5.w,color: prefixColor,),
         suffixIcon:  Icon(suffixIcon,size: 5.w,color: suffixColor,),
+        enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).splashColor),),
       ),
     );
   }
