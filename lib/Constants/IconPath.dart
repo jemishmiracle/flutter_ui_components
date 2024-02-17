@@ -48,6 +48,8 @@ class IconPath {
   static const sideMenuIconImg12 = 'assets/icon/sidemenuIcon12.png';
   static const sideMenuIconImg13 = 'assets/icon/sidemenuIcon13.png';
   static const sideMenuIconImg14 = 'assets/icon/sidemenuIcon14.png';
+  static const sideMenuIconImg15 = 'assets/icon/sidemenuIcon15.png';
+  static const sideMenuIconImg16 = 'assets/icon/sidemenuIcon16.png';
   static const tabIconImg1 = 'assets/icon/tabIcon1.png';
   static const tabIconImg2 = 'assets/icon/tabIcon2.png';
   static const tabIconImg3 = 'assets/icon/tabIcon3.png';
@@ -104,8 +106,6 @@ class IconPath {
   static const bottomappbarIconImg5 = 'assets/icon/bottomappbarIconImg5.png';
   static const bottomappbarIconImg6 = 'assets/icon/bottomappbarIconImg6.png';
   static const bottomappbarIconImg7 = 'assets/icon/bottomappbarIconImg7.png';
-  // static const bottmMenuIconImg18 = 'assets/icon/bottmMenuIconImg18.png';
-  // static const bottmMenuIconImg18 = 'assets/icon/bottmMenuIconImg18.png';
   // static const bottmMenuIconImg18 = 'assets/icon/bottmMenuIconImg18.png';
   // static const bottmMenuIconImg18 = 'assets/icon/bottmMenuIconImg18.png';
   // static const bottmMenuIconImg18 = 'assets/icon/bottmMenuIconImg18.png';

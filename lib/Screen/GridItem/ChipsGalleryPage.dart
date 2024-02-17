@@ -13,35 +13,36 @@ class ChipsGalleryPage extends StatefulWidget {
 }
 
 class _ChipsGalleryPageState extends State<ChipsGalleryPage> {
+  String title1 =
+      "Chips are compact elements that represent an input,""\n"
+      "                            attribute,or action.";
+
+  String subText =
+      "Input chips represent information used in fields, such as an""\n"
+      "entity or different attributes.";
+
+  String subText1 =
+      "Action chips trigger actions related to primary content.";
+
+  String subText2 =
+      "Select your favorite fruits";
+
+  String subText3 =
+      "Filter chips represent filters for a collection.";
+
+  String subText4 =
+      "Select one item";
+
+  String subText5 =
+      "In sets that contain at least two options, choice chips""\n"
+      "represent a single selection.";
+
+  List<String> fruits = ["Apple","Orange","Banana","Mango","Grape","Pear","Cherry"];
+  List<String> select = [];
+  String item = '';
+  List<String> itemList = ["item 0","item 1","item 2"];
   @override
   Widget build(BuildContext context) {
-    String title1 =
-        "Chips are compact elements that represent an input,""\n"
-        "                            attribute,or action.";
-
-    String subText =
-        "Input chips represent information used in fields, such as an""\n"
-        "entity or different attributes.";
-
-    String subText1 =
-        "Action chips trigger actions related to primary content.";
-
-    String subText2 =
-        "Select your favorite fruits";
-
-    String subText3 =
-        "Filter chips represent filters for a collection.";
-
-    String subText4 =
-        "Select one item";
-
-    String subText5 =
-        "In sets that contain at least two options, choice chips""\n"
-        "represent a single selection.";
-
-    List fruits = ["Apple","Orange","Banana","Mango","Grape","Pear","Cherry"];
-    List item = [];
-    List itemList = ["item 0","item 1","item 2"];
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -71,8 +72,7 @@ class _ChipsGalleryPageState extends State<ChipsGalleryPage> {
                       child: Text("--> InputChips",style: TextStyle(color: Theme.of(context).bottomAppBarColor,fontSize: 15.sp),),
                     ),
                     Center(
-                      child: Container(
-                        height: 26.h,
+                      child: Container(height: 26.h,
                         child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(padding: EdgeInsets.only(left: 4.w),
@@ -92,7 +92,7 @@ class _ChipsGalleryPageState extends State<ChipsGalleryPage> {
                       child: Text(subText,style: TextStyle(color: Theme.of(context).secondaryHeaderColor,fontSize: 9.sp),),
                     ),
                     Padding(
-                      padding:EdgeInsets.only(left: 4.w,right: 2.w),
+                      padding:EdgeInsets.only(left: 5.w,right: 4.w,top: 2.w),
                       child: Divider(height: 1.w,color: Theme.of(context).secondaryHeaderColor,),
                     ),
                     Padding(
@@ -108,59 +108,39 @@ class _ChipsGalleryPageState extends State<ChipsGalleryPage> {
                               child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   ActionChips(conBorderRadius: 20.w, context: context, image: IconPath.chipIconImg1, title: "ActionChip"),
-                                  ActionChips(conBorderRadius: 1.w, context: context, image: IconPath.chipIconImg2, title: "Set Alarm"),
-                                ],
-                              ),
-                            ),
+                                  ActionChips(conBorderRadius: 1.w, context: context, image: IconPath.chipIconImg2, title: "Set Alarm"),],),),
                             Container(
                               child:Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   ActionChips(conBorderRadius: 20.w, context: context, image: IconPath.chipIconImg4, title: "Save Date",textColor: Theme.of(context).hintColor),
-                                  ActionChips(conBorderRadius: 1.w, context: context, image: IconPath.chipIconImg3, title: "Set Alarm",textColor: Theme.of(context).disabledColor),
-                                ],
-                              ),
-                            ),
+                                  ActionChips(conBorderRadius: 1.w, context: context, image: IconPath.chipIconImg3, title: "Set Alarm",textColor: Theme.of(context).disabledColor),],),),
                           ],
                         ),
                       ),
                     ),
                     Padding(
                       padding: EdgeInsets.only(left: 4.w,right: 2.w),
-                      child: Text(subText1,style: TextStyle(color: Theme.of(context).secondaryHeaderColor,fontSize: 9.sp),),
-                    ),
+                      child: Text(subText1,style: TextStyle(color: Theme.of(context).secondaryHeaderColor,fontSize: 10.sp),),),
                     Padding(
-                      padding:EdgeInsets.only(left: 4.w,right: 2.w),
-                      child: Divider(height: 1.w,color: Theme.of(context).secondaryHeaderColor,),
-                    ),
+                      padding:EdgeInsets.only(left: 5.w,right: 4.w,top: 2.w),
+                      child: Divider(height: 1.w,color: Theme.of(context).secondaryHeaderColor,),),
                     Padding(
                       padding: EdgeInsets.only(top: 2.w),
-                      child: Text("--> FilterChips",style: TextStyle(color: Theme.of(context).bottomAppBarColor,fontSize: 15.sp),),
-                    ),
+                      child: Text("--> FilterChips",style: TextStyle(color: Theme.of(context).bottomAppBarColor,fontSize: 15.sp),),),
                     Text(subText2,),
                     Padding(padding:EdgeInsets.symmetric(vertical: 2.w),
                       child: Wrap(spacing: 1.w,runSpacing: 2.w,
                         children: List.generate(fruits.length, (index) =>
                             Container(height: 5.h,width: 22.w,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20.w),
-                              ),
-                              child: FilterChip(
+                              child: ChoiceChip(
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.w)),
                                 label: Text(fruits[index],style: TextStyle(fontSize: 10.sp),),
-                                side: BorderSide.none,
-                                backgroundColor: Theme.of(context).selectedRowColor,
+                                side: BorderSide.none, backgroundColor: Theme.of(context).selectedRowColor,
                                 showCheckmark: true,selectedColor: Theme.of(context).backgroundColor,
-                                selected: item.contains(fruits[index]),
+                                selected: select.contains(fruits[index]),
                                 onSelected: (value) {
-                                  setState(() {
-                                    if(item.contains(fruits[index])){
-                                      item.remove(fruits[index]);
-                                    }
-                                    else{
-                                      item.add(fruits[index]);
-                                    }
-                                    print(item.toString());
-                                  });
-                                },
+                                  setState(() {if(select.contains(fruits[index])){select.remove(fruits[index]);}
+                                    else{select.add(fruits[index]);}});},
                               ),
                             ),
                         ),
@@ -168,41 +148,28 @@ class _ChipsGalleryPageState extends State<ChipsGalleryPage> {
                     ),
                     Padding(
                       padding: EdgeInsets.only(left: 4.w,right: 2.w),
-                      child: Text(subText3,style: TextStyle(color: Theme.of(context).secondaryHeaderColor,fontSize: 9.sp),),
-                    ),
+                      child: Text(subText3,style: TextStyle(color: Theme.of(context).secondaryHeaderColor,fontSize: 10.sp),),),
                     Padding(
-                      padding:EdgeInsets.only(left: 4.w,right: 2.w),
-                      child: Divider(height: 1.w,color: Theme.of(context).secondaryHeaderColor,),
-                    ),
+                      padding:EdgeInsets.only(left: 5.w,right: 4.w,top: 2.w),
+                      child: Divider(height: 1.w,color: Theme.of(context).secondaryHeaderColor,),),
                     Padding(
                       padding: EdgeInsets.only(top: 2.w),
-                      child: Text("--> ChoiceChips",style: TextStyle(color: Theme.of(context).bottomAppBarColor,fontSize: 15.sp),),
-                    ),
+                      child: Text("--> ChoiceChips",style: TextStyle(color: Theme.of(context).bottomAppBarColor,fontSize: 15.sp),),),
                     Text(subText4,),
                     Wrap(spacing: 2.w,
                       children: List.generate(itemList.length, (index) =>
                           ChoiceChip(
-                            label: Text(itemList[index]),
-                            side: BorderSide.none,
+                            label: Text(itemList[index]), side: BorderSide.none,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.w)),
                             backgroundColor: Theme.of(context).errorColor,
                             showCheckmark: false,selectedColor: Theme.of(context).backgroundColor,
-                            selected: item.contains(itemList[index]),
-                            onSelected: (value) {
-                              if(item.contains(itemList[index])){
-                                item.remove(itemList[index]);
-                              }
-                              else{
-                                item.add(itemList[index]);
-                              }
-                              print(item.toString());
-                            },
-                          ),
+                            selected: item == itemList[index],
+                            onSelected: (value) {setState(() {item = itemList[index];});},),
                       ),
                     ),
                     Padding(
                       padding: EdgeInsets.only(left: 4.w,right: 2.w),
-                      child: Text(subText5,style: TextStyle(color: Theme.of(context).secondaryHeaderColor,fontSize: 9.sp),),
-                    ),
+                      child: Text(subText5,style: TextStyle(color: Theme.of(context).secondaryHeaderColor,fontSize: 10.sp),),),
                   ],
                 ),
               ),

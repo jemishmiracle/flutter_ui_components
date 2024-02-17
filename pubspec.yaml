@@ -42,6 +42,10 @@ dependencies:
   google_fonts:
   flutter_styled_toast: ^2.2.1
   percent_indicator:
+  side_navigation: ^1.0.4
+  titled_navigation_bar:
+  flutter_hidden_drawer: ^1.0.1
+
 
 dev_dependencies:
   flutter_test:

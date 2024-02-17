@@ -18,18 +18,23 @@ class SimpleBottomBar extends StatelessWidget {
         backgroundColor: Theme.of(context).secondaryHeaderColor,
       ),
       body: Container(),
-      bottomNavigationBar: Stack(
+      bottomNavigationBar: Stack(alignment: Alignment.bottomRight,
         children: [
-          Divider(height: 1.w,color: Theme.of(context).splashColor,),
-          Padding(padding:EdgeInsets.only(top: 3.w,left: 2.w),
-            child: Row(
-              children: [
-                Image.asset(IconPath.bottomappbarIconImg5,fit: BoxFit.cover,height: 5.w,),SizedBox(width: 5.w,),
-                Image.asset(IconPath.bottomappbarIconImg7,fit: BoxFit.cover,height: 5.w,),
-              ],
-            ),
-          ),
-          Padding(padding: EdgeInsets.only(left: 57.w),
+          Container(height: 6.h,width: double.infinity,
+              child: Column(
+                children: [
+                  Divider(height: 1.w,color: Theme.of(context).splashColor,),
+                  Padding(padding:EdgeInsets.only(top: 3.w,left: 2.w),
+                    child: Row(
+                      children: [
+                        Image.asset(IconPath.bottomappbarIconImg5,fit: BoxFit.cover,height: 5.w,),SizedBox(width: 5.w,),
+                        Image.asset(IconPath.bottomappbarIconImg7,fit: BoxFit.cover,height: 5.w,),
+                      ],
+                    ),
+                  ),
+                ],
+              )),
+          Padding(padding: EdgeInsets.only(bottom: 5.w,right: 4.w),
             child: Container(height: 6.h,width: 38.w,
               child: ElevatedButton(onPressed: (){}, child: Row(
                 children: [

@@ -95,6 +95,7 @@ class Screens{
     GetPage(name: Routes.profileScreen, page: () => ProfilePage()),
     GetPage(name: Routes.searchBarScreen, page: () => SearchBarPage()),
     GetPage(name: Routes.googleMapScreen, page: () => GoogleMapPage()),
+    GetPage(name: Routes.firebaseAdmobScreen, page: () => FirebasePhoneAuthentication()),
     GetPage(name: Routes.simpleListScreen, page: () => SimpleList()),
     GetPage(name: Routes.bouncyListScreen, page: () => BouncyList()),
     GetPage(name: Routes.slidableListScreen, page: () => SlidableList()),

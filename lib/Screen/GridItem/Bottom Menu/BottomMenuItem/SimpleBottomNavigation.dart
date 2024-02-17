@@ -56,9 +56,10 @@ class _SimpleBottomNavigationState extends State<SimpleBottomNavigation> {
         ],
         onTap: onItemTapped,
         currentIndex: selectedIndex,
-        backgroundColor:Colors.cyan,
+        backgroundColor:Colors.green,
         showSelectedLabels: true,
         selectedItemColor: Colors.red,
+
       ),
     );
   }

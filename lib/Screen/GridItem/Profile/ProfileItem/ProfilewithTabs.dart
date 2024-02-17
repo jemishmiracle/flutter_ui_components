@@ -50,7 +50,7 @@ class _ProfilewithTabsState extends State<ProfilewithTabs> with SingleTickerProv
           floatHeaderSlivers: true,scrollDirection: Axis.vertical,
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) =>
           [ SliverAppBar(
-            expandedHeight: 46.h,
+            expandedHeight: 49.h,
             backgroundColor: Theme.of(context).secondaryHeaderColor,
             leading: IconButton(
               onPressed: () => Get.back(),
@@ -91,7 +91,7 @@ class _ProfilewithTabsState extends State<ProfilewithTabs> with SingleTickerProv
                     ),
                   ),
                   Padding(
-                      padding:EdgeInsets.only(top: 85.w),
+                      padding:EdgeInsets.only(top: 75.w),
                       child: TabBar(
                         controller: tabController,
                         labelStyle: TextStyle(color: Theme.of(context).primaryColorDark),
@@ -151,7 +151,7 @@ class _ProfilewithTabsState extends State<ProfilewithTabs> with SingleTickerProv
                     itemCount: postList.length,shrinkWrap: true,
                     itemBuilder: (context, index) {
                       return Padding(
-                         padding:EdgeInsets.only(bottom: 7.w,left: 7.w,right: 7.w),
+                         padding:EdgeInsets.all(5.w),
                           child:post(postList[index].time, postList[index].img),
                       );
                     },
@@ -165,7 +165,7 @@ class _ProfilewithTabsState extends State<ProfilewithTabs> with SingleTickerProv
   }
   Widget post(String text,String img){
     return Container(
-      height: 35.h,width: double.infinity,
+      height: 38.h,width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(1.w),
         color: Theme.of(context).secondaryHeaderColor
@@ -181,7 +181,7 @@ class _ProfilewithTabsState extends State<ProfilewithTabs> with SingleTickerProv
             )
           ),
           Image.asset(img,fit: BoxFit.cover,width: double.infinity,height: 20.h,),
-          Container(padding: EdgeInsets.only(top: 2.w,left: 2.w),
+          Container(padding: EdgeInsets.only(top: 3.w,left: 3.w),
             child: Row(
               children: [
                 Image.asset(IconPath.bottmMenuIconImg10,fit: BoxFit.cover,height: 5.w,),SizedBox(width: 2.w,),
