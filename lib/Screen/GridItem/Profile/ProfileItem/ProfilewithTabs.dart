@@ -21,6 +21,8 @@ class _ProfilewithTabsState extends State<ProfilewithTabs> with SingleTickerProv
   @override
   Widget build(BuildContext context) {
 
+    final List<String> tab = <String>["ABOUT","POSTS"];
+
     List profileData = [
       SizedBox(height: 9.h,
         child: Column(children: [Text("Photos",style: TextStyle(color: Theme.of(context).bottomAppBarColor),), Text("160",style: TextStyle(color: Theme.of(context).primaryColorDark,fontWeight: FontWeight.bold),)],),),
@@ -47,64 +49,57 @@ class _ProfilewithTabsState extends State<ProfilewithTabs> with SingleTickerProv
     return Scaffold(
       body: SafeArea(
         child: NestedScrollView(
-          floatHeaderSlivers: true,scrollDirection: Axis.vertical,
+          floatHeaderSlivers: true,
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) =>
-          [ SliverAppBar(
-            expandedHeight: 49.h,
-            backgroundColor: Theme.of(context).secondaryHeaderColor,
-            leading: IconButton(
-              onPressed: () => Get.back(),
-              icon: Icon(Icons.arrow_back,color: Theme.of(context).primaryColorDark,),),
-            flexibleSpace: FlexibleSpaceBar(
-              background: Stack(
-                children: [
-                  Container(height: 38.h, color: Theme.of(context).secondaryHeaderColor,),
-                  Padding(
-                    padding: EdgeInsets.only(top: 20.w),
-                    child: Align(alignment: Alignment.topCenter,
-                      child: CircleAvatar(
-                        radius: 6.h,
-                        backgroundImage: AssetImage(ImagePath.perImg5,),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding:EdgeInsets.only(top: 42.w),
-                    child: Align(alignment: Alignment.topCenter,
-                        child: Text("Megan Allison",style: TextStyle(color: Theme.of(context).primaryColorDark,fontSize: 14.sp),)),
-                  ),
-                  Padding(
-                    padding:EdgeInsets.only(top: 50.w),
-                    child: Align(alignment: Alignment.topCenter,
-                        child: Text("Traveller, Dreamer, Photographer",
-                          style: TextStyle(color: Theme.of(context).primaryColorDark,fontSize: 10.sp),)),),
-                  Padding(padding: EdgeInsets.only(top: 58.w,left: 2.w,right: 2.w),
-                    child: Container(
-                      height: 10.h,
-                      width: double.infinity,padding: EdgeInsets.all(2.w),
-                      child: Row(
-                        children: List.generate(profileData.length, (index) =>
-                            Padding(padding: EdgeInsets.only(left: 12.w,top: 2.w,),
-                              child: Container(child: profileData[index],),)
+          [
+            SliverAppBar(
+              expandedHeight: 49.h,toolbarHeight: 10.h,
+              bottom:TabBar(controller: tabController, labelStyle: TextStyle(color: Theme.of(context).primaryColorDark), tabs: [Tab(text: "ABOUT",),Tab(text: "POSTS",)],),
+              backgroundColor: Theme.of(context).secondaryHeaderColor,
+              leading: IconButton(
+                onPressed: () => Get.back(),
+                icon: Icon(Icons.arrow_back,color: Theme.of(context).primaryColorDark,),),
+              flexibleSpace: FlexibleSpaceBar(
+                background: Stack(
+                  children: [
+                    Container(height: 38.h, color: Theme.of(context).secondaryHeaderColor,),
+                    Padding(
+                      padding: EdgeInsets.only(top: 20.w),
+                      child: Align(alignment: Alignment.topCenter,
+                        child: CircleAvatar(
+                          radius: 6.h,
+                          backgroundImage: AssetImage(ImagePath.perImg5,),
                         ),
                       ),
                     ),
-                  ),
-                  Padding(
-                      padding:EdgeInsets.only(top: 75.w),
-                      child: TabBar(
-                        controller: tabController,
-                        labelStyle: TextStyle(color: Theme.of(context).primaryColorDark),
-                        tabs: [Tab(text: "ABOUT",),Tab(text: "POSTS",)],
+                    Padding(
+                      padding:EdgeInsets.only(top: 42.w),
+                      child: Align(alignment: Alignment.topCenter,
+                          child: Text("Megan Allison",style: TextStyle(color: Theme.of(context).primaryColorDark,fontSize: 14.sp),)),
+                    ),
+                    Padding(
+                      padding:EdgeInsets.only(top: 50.w),
+                      child: Align(alignment: Alignment.topCenter,
+                          child: Text("Traveller, Dreamer, Photographer",
+                            style: TextStyle(color: Theme.of(context).primaryColorDark,fontSize: 10.sp),)),),
+                    Padding(padding: EdgeInsets.only(top: 58.w,left: 2.w,right: 2.w),
+                      child: Container(
+                        height: 10.h,
+                        width: double.infinity,padding: EdgeInsets.all(2.w),
+                        child: Row(
+                          children: List.generate(profileData.length, (index) =>
+                              Padding(padding: EdgeInsets.only(left: 12.w,top: 2.w,),
+                                child: Container(child: profileData[index],),)
+                          ),
+                        ),
                       ),
-                  ),
-                ],),
-            ),
-            snap: true,pinned: true,floating: true,
+                    ),
+                  ],),
+              ),
+              snap: true,pinned: true,floating: true,
           ),],
           body:TabBarView(controller: tabController,
-            children: [
-              Padding(padding:  EdgeInsets.all(3.w),
+            children: [Padding(padding:  EdgeInsets.all(3.w),
                 child: Column(
                   children: [
                     Container(height: 31.h,
@@ -112,7 +107,7 @@ class _ProfilewithTabsState extends State<ProfilewithTabs> with SingleTickerProv
                         borderRadius: BorderRadius.circular(1.w),
                         boxShadow: [BoxShadow(color: Theme.of(context).shadowColor,blurRadius: 1.0,blurStyle: BlurStyle.outer)],
                       ),
-                      child: ListView.builder(
+                      child:ListView.builder(
                           itemCount: profileTabList.length,physics: NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) {
                             return ListTile(
@@ -163,6 +158,7 @@ class _ProfilewithTabsState extends State<ProfilewithTabs> with SingleTickerProv
       ),
     );
   }
+
   Widget post(String text,String img){
     return Container(
       height: 38.h,width: double.infinity,

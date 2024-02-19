@@ -44,10 +44,7 @@ class _AnimatedBottomNavigationState extends State<AnimatedBottomNavigation> {
               label: 'People'
           ),
           BottomNavigationBarItem(
-              icon:Icon( Icons.favorite,size: 4.w),
-              label: 'Favorite'
-          ),
-
+              icon:Icon( Icons.favorite,size: 4.w), label: 'Favorite'),
         ],
         onTap: onItemTapped,
         currentIndex: selectedIndex,

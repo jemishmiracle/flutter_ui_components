@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_ui_components/Constants/ImagePath.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -28,6 +29,7 @@ class SlidableList extends StatelessWidget {
       SlidableData(title: "Item 13 Sender", subject: "Subject: 13", img: ImagePath.catImg14),
       SlidableData(title: "Item 14 Sender", subject: "Subject: 14", img: ImagePath.catImg15),
     ];
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -37,27 +39,41 @@ class SlidableList extends StatelessWidget {
         backgroundColor: Theme.of(context).secondaryHeaderColor,
       ),
       body: SafeArea(
-        child: Stack(alignment: Alignment.topLeft,
-          children: [
-            Image.asset(ImagePath.bgimg1,height: double.infinity,fit: BoxFit.cover,width: double.infinity,),
-            Container(
-              child: ListView.builder(
-                shrinkWrap: true ,itemCount:senderData.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    leading: CircleAvatar(
-                      radius: 20,
-                      child: ClipOval(
-                        child: Image.asset(
-                          senderData[index].img,fit: BoxFit.cover,height: 15.w,width: 15.w,),
-                      ),
-                    ),
-                    title:Text( senderData[index].title,style: TextStyle(color:Theme.of(context).secondaryHeaderColor,fontWeight: FontWeight.bold),),
-                    subtitle: Text(senderData[index].subject,style: TextStyle(color: Theme.of(context).shadowColor),),
-                  );
-                },),
-            ),
-          ],
+        child: RefreshIndicator(
+          backgroundColor: Theme.of(context).primaryColorDark,
+          onRefresh: () async {await Future.delayed(Duration(seconds: 2));},
+          child: Stack(alignment: Alignment.topLeft,
+            children: [
+              Image.asset(ImagePath.bgimg1,height: double.infinity,fit: BoxFit.cover,width: double.infinity,),
+              Container(
+                child: ListView.builder(
+                  shrinkWrap: true ,itemCount:senderData.length,
+                  itemBuilder: (context, index) {
+                    return Slidable(
+                        endActionPane: ActionPane(
+                          motion: const ScrollMotion(),
+                          dismissible: DismissiblePane(onDismissed: () {}),
+                          children:  [
+                            SlidableAction(
+                              onPressed: (context) {ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Delete")));},
+                              backgroundColor:Theme.of(context).dividerColor,
+                              foregroundColor: Theme.of(context).primaryColorDark, icon: Icons.delete, label: 'Delete',),
+                            SlidableAction(
+                              onPressed: (context) {ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("more")));},
+                              backgroundColor:Theme.of(context).disabledColor,
+                              foregroundColor: Theme.of(context).primaryColorDark, icon: Icons.more, label: 'More',),
+                          ],
+                        ),
+                        child: ListTile(
+                          leading: CircleAvatar(
+                            radius: 20, child: ClipOval(child: Image.asset(senderData[index].img,fit: BoxFit.cover,height: 15.w,width: 15.w,),),),
+                          title:Text( senderData[index].title,style: TextStyle(color:Theme.of(context).secondaryHeaderColor,fontWeight: FontWeight.bold),),
+                          subtitle: Text(senderData[index].subject,style: TextStyle(color: Theme.of(context).shadowColor),),),
+                    );
+                  },),
+              ),
+            ],
+          ),
         )
       ),
     );

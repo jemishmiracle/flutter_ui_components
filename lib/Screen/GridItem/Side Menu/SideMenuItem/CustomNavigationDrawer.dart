@@ -5,10 +5,15 @@ import 'package:flutter_ui_components/Constants/ImagePath.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
-class CustomNavigationDrawer extends StatelessWidget {
+class CustomNavigationDrawer extends StatefulWidget {
   String title;
   CustomNavigationDrawer({super.key,this.title = 'THE NAVIGATION DEMO'});
 
+  @override
+  State<CustomNavigationDrawer> createState() => _CustomNavigationDrawerState();
+}
+
+class _CustomNavigationDrawerState extends State<CustomNavigationDrawer> {
   @override
   Widget build(BuildContext context) {
     List<NavigationData> navigationList = [
@@ -28,23 +33,14 @@ class CustomNavigationDrawer extends StatelessWidget {
     //  drawerWidth:  MediaQuery.of(context).size.width * .4,
     //   drawer: HiddenDrawerMenu(
     //     menu: [
-    //       DrawerMenu(
-    //           child: Text("THE PADDOCK"),
-    //           onPressed: (){}),
-    //       DrawerMenu(
-    //           child: Text("THE PADDOCK"),
-    //           onPressed: (){}),
-    //       DrawerMenu(
-    //           child: Text("THE PADDOCK"),
-    //           onPressed: (){}),
-    //       DrawerMenu(
-    //           child: Text("THE PADDOCK"),
-    //           onPressed: (){}),
+    //       DrawerMenu(child: Text("THE PADDOCK"), onPressed: (){}),
+    //       DrawerMenu(child: Text("THE PADDOCK"), onPressed: (){}),
+    //       DrawerMenu(child: Text("THE PADDOCK"), onPressed: (){}),
+    //       DrawerMenu(child: Text("THE PADDOCK"), onPressed: (){}),
     //     ],
     //   ),
     //    child: Scaffold(
     //         appBar:AppBar(
-    //           leading: Icon(Icons.art_track),
     //           title: Text(title,style: TextStyle(color: Theme.of(context).primaryColorDark,fontSize: 14.sp,fontWeight: FontWeight.w600,),),
     //           iconTheme: IconThemeData(color: Theme.of(context).primaryColorDark),
     //           backgroundColor: Theme.of(context).secondaryHeaderColor,
@@ -65,49 +61,53 @@ class CustomNavigationDrawer extends StatelessWidget {
     //          ),
     //    ),
     // );
-    return HiddenDrawer(
-      drawerWidth: MediaQuery.of(context).size.width * .4,
-      drawer: HiddenDrawerMenu(
-        menu: <DrawerMenu>[
-          DrawerMenu(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text("Menu 1"),
-              ),
-              onPressed: () {
-                print("Menu 1");
-              }),
-          DrawerMenu(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text("Menu 2"),
-              ),
-              onPressed: () {
-                print("Menu 2");
-              }),
-        ],
-        header: Text("Header"),
-        footer: Text("Footer"),
-      ),
-      child: Scaffold(
-        appBar: AppBar(
-          leading: HiddenDrawerIcon(
-            mainIcon: Icon(Icons.art_track),
-          ),
-          title: Text(title),
-        ),
-        body: Center(
-          child: Column(
-            children: <Widget>[
-              Text(
-                'First Screen',
-              ),
-              ElevatedButton(
-                child: Text("Go to next screen"),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => DrawerMenuState(),)
+      ],
+      child: HiddenDrawer(
+        drawerWidth: MediaQuery.of(context).size.width * .4,
+        drawer: HiddenDrawerMenu(
+          menu: <DrawerMenu>[
+            DrawerMenu(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text("Menu 1"),
+                ),
                 onPressed: () {
-                },
-              )
-            ],
+                  print("Menu 1");
+                }),
+            DrawerMenu(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text("Menu 2"),
+                ),
+                onPressed: () {
+                  print("Menu 2");
+                }),
+          ],
+          header: Text("Header"),
+          footer: Text("Footer"),
+        ),
+        child: Scaffold(
+          appBar: AppBar(
+            leading: HiddenDrawerIcon(
+              mainIcon: Icon(Icons.art_track),
+            ),
+            title: Text(widget.title),
+          ),
+          body: Center(
+            child: Column(
+              children: <Widget>[
+                Text(
+                  'First Screen',
+                ),
+                ElevatedButton(
+                  child: Text("Go to next screen"),
+                  onPressed: () {},
+                )
+              ],
+            ),
           ),
         ),
       ),

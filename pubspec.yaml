@@ -45,6 +45,9 @@ dependencies:
   side_navigation: ^1.0.4
   titled_navigation_bar:
   flutter_hidden_drawer: ^1.0.1
+  flutter_slidable:
+  animated_splash_screen: ^1.1.0
+  bottom_navy_bar: ^6.0.0
 
 
 dev_dependencies:

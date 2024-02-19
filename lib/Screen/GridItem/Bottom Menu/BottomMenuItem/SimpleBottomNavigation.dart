@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ui_components/Constants/IconPath.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
@@ -12,18 +13,17 @@ class SimpleBottomNavigation extends StatefulWidget {
 
 class _SimpleBottomNavigationState extends State<SimpleBottomNavigation> {
   int selectedIndex = 0;
-  static List<Widget> widgetOptions = <Widget>[
-    Center(child: Icon( Icons.home,size: 15.w,)),
-    Center(child: Icon( Icons.people,size: 15.w)),
-    Center(child: Icon( Icons.favorite,size: 15.w)),
-    Center(child: Icon( Icons.event_available,size: 15.w)),
+  List<Color> colorList = <Color>[Color(0xffFF8894), Color(0xff5CC2C6), Color(0xff5EA8E6), Color(0xffFA85B9),];
+
+  static List iconList = <Widget>[
+    Center(child: Image.asset(IconPath.bottmMenuIconImg13,fit: BoxFit.cover,height: 10.h,),),
+    Center(child: Image.asset(IconPath.bottmMenuIconImg15,fit: BoxFit.cover,height: 10.h,),),
+    Center(child: Image.asset(IconPath.bottmMenuIconImg17,fit: BoxFit.cover,height: 10.h,),),
+    Center(child: Image.asset(IconPath.bottmMenuIconImg11,fit: BoxFit.cover,height: 10.h,),),
   ];
 
-  void onItemTapped(int index) {
-    setState(() {
-      selectedIndex = index;
-    });
-  }
+  void onItemTapped(int index) {setState(() {selectedIndex = index;});}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,32 +34,21 @@ class _SimpleBottomNavigationState extends State<SimpleBottomNavigation> {
         title: Text(widget.title,style: TextStyle(color: Theme.of(context).primaryColorDark,fontSize: 14.sp,fontWeight: FontWeight.w600),),
         backgroundColor: Theme.of(context).secondaryHeaderColor,
       ),
-      body: SafeArea(child: widgetOptions.elementAt(selectedIndex)),
+      body: SafeArea(
+        child: Center(child: iconList.elementAt(selectedIndex),),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-              icon:Icon( Icons.home,size: 4.w,),
-            label: 'Home'
-          ),
-          BottomNavigationBarItem(
-              icon:Icon( Icons.people,size: 4.w),
-            label: 'People'
-          ),
-          BottomNavigationBarItem(
-              icon:Icon( Icons.favorite,size: 4.w),
-            label: 'Favorite'
-          ),
-          BottomNavigationBarItem(
-              icon:Icon( Icons.event_available,size: 4.w),
-            label: 'Event'
-          ),
+          BottomNavigationBarItem(icon:Image.asset(IconPath.bottmMenuIconImg14,fit: BoxFit.cover,height: 2.h,), label: 'Home'),
+          BottomNavigationBarItem(icon:Image.asset(IconPath.bottmMenuIconImg16,fit: BoxFit.cover,height: 2.h,), label: 'People'),
+          BottomNavigationBarItem(icon:Image.asset(IconPath.bottmMenuIconImg18,fit: BoxFit.cover,height: 2.h,), label: 'Favorite'),
+          BottomNavigationBarItem(icon:Image.asset(IconPath.bottmMenuIconImg12,fit: BoxFit.cover,height: 2.h,), label: 'Event'),
         ],
         onTap: onItemTapped,
         currentIndex: selectedIndex,
-        backgroundColor:Colors.green,
+        backgroundColor:Colors.indigo,
         showSelectedLabels: true,
         selectedItemColor: Colors.red,
-
       ),
     );
   }

@@ -1,15 +1,32 @@
-import 'dart:io';
-
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_ui_components/Constants/ImagePath.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:sizer/sizer.dart';
 
-class ProgressBarsPage extends StatelessWidget {
+class ProgressBarsPage extends StatefulWidget {
   String title;
   ProgressBarsPage({super.key,this.title = 'Progress Indicator Gallery'});
 
+  @override
+  State<ProgressBarsPage> createState() => _ProgressBarsPageState();
+}
+
+class _ProgressBarsPageState extends State<ProgressBarsPage> {
+  double value  = 0;
+
+  void downloadData() {
+     Timer.periodic(Duration(milliseconds: 5000),
+             (Timer timer){setState(() {if(value == 1) {} else {value = value + 0.1;}});}
+    );
+  }
+
+  // @override
+  // void initState() {
+  //   downloadData();
+  //   super.initState();
+  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +34,7 @@ class ProgressBarsPage extends StatelessWidget {
         leading: IconButton(
           onPressed: () => Get.back(),
           icon: Icon(Icons.arrow_back,color: Theme.of(context).primaryColorDark,),),
-        title: Text(title,style: TextStyle(color: Theme.of(context).primaryColorDark,fontSize: 14.sp,fontWeight: FontWeight.w600),),
+        title: Text(widget.title,style: TextStyle(color: Theme.of(context).primaryColorDark,fontSize: 14.sp,fontWeight: FontWeight.w600),),
         backgroundColor: Theme.of(context).secondaryHeaderColor,
       ),
       body: SafeArea(
@@ -64,6 +81,7 @@ class ProgressBarsPage extends StatelessWidget {
               child: Center(child: Text(title,style: TextStyle(color: Theme.of(context).primaryColorDark,fontSize: 14.sp),))),
           Padding(padding:EdgeInsets.only(top: 2.w),
             child: LinearProgressIndicator(
+              value: value,
               color: Theme.of(context).toggleableActiveColor,
             ),
           ),

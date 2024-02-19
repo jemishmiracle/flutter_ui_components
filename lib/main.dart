@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hidden_drawer/flutter_hidden_drawer.dart';
 import 'package:flutter_ui_components/Route/Screens.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:sizer/sizer.dart';
@@ -40,7 +41,8 @@ class MyApp extends StatelessWidget {
               highlightColor: Color(0xff607B8B),
               hoverColor: Color(0xff6E6E6E),
               splashColor: Color(0xffBABABA),
-              colorScheme: ColorScheme.light(primary: Color(0x85E98929),),),
+              colorScheme: ColorScheme.light(primary: Color(0x85E98929),),
+            ),
             getPages:Screens.routes,
             initialRoute: Routes.homeScreen,
           );

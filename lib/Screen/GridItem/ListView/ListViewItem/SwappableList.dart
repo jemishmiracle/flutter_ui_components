@@ -32,7 +32,6 @@ class _SwappableListState extends State<SwappableList> {
       SwipeData(title: "Item 14 Sender", subject: "Subject: 14", img: ImagePath.catImg30),
     ];
 
-
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -44,6 +43,7 @@ class _SwappableListState extends State<SwappableList> {
       body: SafeArea(
         child: Container(
           child: ListView.builder(
+              padding: EdgeInsets.only(left: 2.w,right: 2.w),
               itemCount: itemData.length,
               itemBuilder: (context, index) {
                 // return Padding(
@@ -70,29 +70,34 @@ class _SwappableListState extends State<SwappableList> {
                 // );
                 return Dismissible(
                     key:UniqueKey(),
-                    background: Container(
-                      height: 23.h,color: Theme.of(context).dividerColor,
-                      child: Center(
-                          child: Icon(Icons.delete)),
+                    background: Padding(padding: EdgeInsets.only(left: 2.w,top: 5.w),
+                      child: Container(
+                        height: 23.h,color: Theme.of(context).dividerColor,
+                        child: Padding(padding: EdgeInsets.only(left: 3.w),
+                          child: Align(alignment:Alignment.centerLeft,child: Icon(Icons.delete,color: Theme.of(context).primaryColorDark,size: 8.w,)),
+                        ),),
+                    ),
+                    secondaryBackground: Padding(padding: EdgeInsets.only(right: 2.w,top: 5.w),
+                      child: Container(
+                        color: Theme.of(context).backgroundColor,height: 23.h,
+                        child: Padding(padding:  EdgeInsets.only(right: 3.w),
+                          child: Align(alignment: Alignment.centerRight, child: Icon(Icons.archive,color: Theme.of(context).primaryColorDark,size: 8.w,),),
+                        ),),
                     ),
                     onDismissed: (direction) {
-                      SwipeData name = itemData[index];
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text("You deleted ${name.title}"),
-                         action: SnackBarAction(
-                           onPressed: () {
-                             print("names[index] ${itemData[index].title}");
-                             itemData.insert(index, name);
-                             setState(() {});
-                           },
-                           label: "Undo",
-                         ),
-                      ));
-                      itemData.removeAt(index);
-                      setState(() {});
+                      // SwipeData name = itemData[index];
+                      // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      //     content: Text("You deleted ${name.title}"),
+                      //    action: SnackBarAction(
+                      //      onPressed: () {print("names[index] ${itemData[index].title}");itemData.insert(index, name);setState(() {});},
+                      //      label: "Undo",
+                      //    ),
+                      // ));
+                      // itemData.removeAt(index);
+                      // setState(() {});
                     },
                     child: Padding(
-                      padding: EdgeInsets.only(left: 2.w,right: 2.w,top: 5.w),
+                      padding: EdgeInsets.only(top: 5.w),
                       child: Container(
                         height: 23.h,
                         width: double.infinity,

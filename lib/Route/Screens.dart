@@ -48,7 +48,7 @@ import 'package:flutter_ui_components/Screen/GridItem/Social%20Login/SocialLogin
 import 'package:flutter_ui_components/Screen/GridItem/Social%20Login/SocialLoginItem/FirebasePhoneAuthentication.dart';
 import 'package:flutter_ui_components/Screen/GridItem/Social%20Login/SocialLoginItem/GoogleLogin.dart';
 import 'package:flutter_ui_components/Screen/GridItem/Social%20Login/SocialLoginPage.dart';
-import 'package:flutter_ui_components/Screen/GridItem/Splash%20Screen/SplashItem/AnimatedSplashScreen.dart';
+import 'package:flutter_ui_components/Screen/GridItem/Splash%20Screen/SplashItem/AnimatedSplashScreenPage.dart';
 import 'package:flutter_ui_components/Screen/GridItem/Splash%20Screen/SplashItem/GradiantSplashScreen.dart';
 import 'package:flutter_ui_components/Screen/GridItem/Splash%20Screen/SplashItem/SimpleSplashScreen.dart';
 import 'package:flutter_ui_components/Screen/GridItem/Splash%20Screen/SplashScreenPage.dart';
@@ -126,7 +126,7 @@ class Screens{
     GetPage(name: Routes.animatedPageviewScreen, page: () => AnimatedPageview()),
     GetPage(name: Routes.simplePageviewScreen, page: () => SimplePageview()),
     GetPage(name: Routes.gradiantSplashScreen, page: () => GradiantSplashScreen()),
-    GetPage(name: Routes.animatedSplashScreen, page: () => AnimatedSplashScreen()),
+    GetPage(name: Routes.animatedSplashScreen, page: () => AnimatedSplashScreenPage()),
     GetPage(name: Routes.simpleSplashScreen, page: () => SimpleSplashScreen()),
     GetPage(name: Routes.simpleBottomBarScreen, page: () => SimpleBottomBar()),
     GetPage(name: Routes.titledBottomBarScreen, page: () => TitledBottomBar()),
