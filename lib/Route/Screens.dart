@@ -33,7 +33,7 @@ import 'package:flutter_ui_components/Screen/GridItem/Profile/ProfileItem/Profil
 import 'package:flutter_ui_components/Screen/GridItem/Profile/ProfileItem/SimpleProfile.dart';
 import 'package:flutter_ui_components/Screen/GridItem/Profile/ProfilePage.dart';
 import 'package:flutter_ui_components/Screen/GridItem/ProgressBarsPage.dart';
-import 'package:flutter_ui_components/Screen/GridItem/Search%20Bar/SearchBarItem/MaterialSearchBar.dart';
+import 'package:flutter_ui_components/Screen/GridItem/Search%20Bar/SearchBarItem/MaterialSearchBarPage.dart';
 import 'package:flutter_ui_components/Screen/GridItem/Search%20Bar/SearchBarItem/SimpleSearchBar.dart';
 import 'package:flutter_ui_components/Screen/GridItem/Search%20Bar/SearchBarItem/ToolbarSearchBar.dart';
 import 'package:flutter_ui_components/Screen/GridItem/Search%20Bar/SearchBarPage.dart';
@@ -141,7 +141,7 @@ class Screens{
     GetPage(name: Routes.profilewithTabsScreen, page: () => ProfilewithTabs()),
     GetPage(name: Routes.profileWithSliverAppBarScreen, page: () => ProfileWithSliverAppBar()),
     GetPage(name: Routes.simpleSearchBarScreen, page: () => SimpleSearchBar()),
-    GetPage(name: Routes.materialSearchBarScreen, page: () => MaterialSearchBar()),
+    GetPage(name: Routes.materialSearchBarScreen, page: () => MaterialSearchBarPage()),
     GetPage(name: Routes.toolbarSearchBarScreen, page: () => ToolbarSearchBar()),
     GetPage(name: Routes.textFiledwithbasicpropertyScreen, page: () => TextFiledwithbasicproperty()),
     GetPage(name: Routes.textFieldwithIconScreen, page: () => TextFieldwithIcon()),

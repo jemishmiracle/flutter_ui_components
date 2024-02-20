@@ -13,15 +13,21 @@ class SimpleSearchBar extends StatelessWidget {
           Image.asset(ImagePath.searchBgImg2,width: double.infinity,height: 20.h,fit: BoxFit.cover,),
           Padding(
               padding: EdgeInsets.only(top: 35.w),
-              child: Container(height: 4.h,
+              child: Container(height: 6.h,
                 child: ListTile(
                   title: TextField(
-                    decoration: InputDecoration(contentPadding: EdgeInsets.only(bottom: 2.w),
+                    cursorColor: Theme.of(context).primaryColorDark,
+                    decoration: InputDecoration(contentPadding: EdgeInsets.only(bottom: 3.h,),
                       hintText: 'Search from below list',border: InputBorder.none,
                       hintStyle: TextStyle(color: Theme.of(context).primaryColorDark),
+                      suffixIcon: Padding(padding: EdgeInsets.only(bottom: 5.w,),
+                        child: IconButton(onPressed: () {},icon: Icon(Icons.cancel,size: 5.w,color: Theme.of(context).primaryColorDark),),
+                      )
                     ),
                   ),
-                  leading: Icon(Icons.search_rounded,color: Theme.of(context).primaryColorDark,size: 5.w,),
+                  leading: Padding(padding: EdgeInsets.only(bottom: 5.w),
+                    child: Icon(Icons.search_rounded,color: Theme.of(context).primaryColorDark,size: 5.w,),
+                  ),
                   style: ListTileStyle.list,tileColor: Theme.of(context).secondaryHeaderColor,
                 ),
               ),

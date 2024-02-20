@@ -1,8 +1,9 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_ui_components/Constants/ImagePath.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:simple_animation_progress_bar/simple_animation_progress_bar.dart';
 import 'package:sizer/sizer.dart';
 
 class ProgressBarsPage extends StatefulWidget {
@@ -13,20 +14,36 @@ class ProgressBarsPage extends StatefulWidget {
   State<ProgressBarsPage> createState() => _ProgressBarsPageState();
 }
 
-class _ProgressBarsPageState extends State<ProgressBarsPage> {
-  double value  = 0;
+class _ProgressBarsPageState extends State<ProgressBarsPage> with SingleTickerProviderStateMixin {
+  // Animation<double>? animation;
+  late Animation<double> animation;
+  late AnimationController controller;
 
-  void downloadData() {
-     Timer.periodic(Duration(milliseconds: 5000),
-             (Timer timer){setState(() {if(value == 1) {} else {value = value + 0.1;}});}
+  @override
+  void initState() {
+    controller = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 2000),
     );
+    animation = Tween(begin: 0.0, end: 1.0).animate(controller)
+      ..addListener(() {
+        setState(() {});
+      });
+    controller.repeat();
+    // AnimationController controller = AnimationController(
+    //     vsync: this,duration: Duration(milliseconds: 2000));
+    // animation = Tween(end: 1.0,begin: 0.0).animate(controller)..addListener(() { setState(() {});});
+    // controller.repeat();
+    // super.initState();
   }
 
-  // @override
-  // void initState() {
-  //   downloadData();
-  //   super.initState();
-  // }
+  @override
+  void dispose() {
+    // Dispose the animation controller when the state is disposed
+    controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,10 +61,9 @@ class _ProgressBarsPageState extends State<ProgressBarsPage> {
             Padding(padding: EdgeInsets.all(3.w),
               child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  progressIndicator(
-                      context: context,
-                      conHeight: 10.h,
-                      title: "Linear Progress Indicator"),
+                  progressIndicator(context: context,
+                      conHeight: 10.h,value: animation.value,
+                      title: 'Linear Progress Indicator'),
                   Padding(padding: EdgeInsets.only(top: 2.w,),
                     child: circularProgressIndicator(
                         context: context,
@@ -60,6 +76,13 @@ class _ProgressBarsPageState extends State<ProgressBarsPage> {
                         conHeight: 27.h,
                         title: "Custom Circular Percentage Indicator", text: '70%'),
                   ),
+                  Padding(padding: EdgeInsets.only(top: 4.w),
+                    child: customProgressBar(
+                        context: context,
+                        conHeight: 25.h,
+                        text:'Custom ProgressBar',
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -71,7 +94,7 @@ class _ProgressBarsPageState extends State<ProgressBarsPage> {
 
   Widget progressIndicator({
     required BuildContext context,
-    required double conHeight,
+    required double conHeight,double? value,
     required String title,}){
     return Container(
       height: conHeight,decoration: BoxDecoration(color: Theme.of(context).secondaryHeaderColor,borderRadius: BorderRadius.circular(1.w)),
@@ -80,11 +103,7 @@ class _ProgressBarsPageState extends State<ProgressBarsPage> {
           Padding(padding:EdgeInsets.only(top: 2.w),
               child: Center(child: Text(title,style: TextStyle(color: Theme.of(context).primaryColorDark,fontSize: 14.sp),))),
           Padding(padding:EdgeInsets.only(top: 2.w),
-            child: LinearProgressIndicator(
-              value: value,
-              color: Theme.of(context).toggleableActiveColor,
-            ),
-          ),
+            child: LinearProgressIndicator(value: value, color: Theme.of(context).toggleableActiveColor,),),
         ],
       ),
     );
@@ -145,6 +164,31 @@ class _ProgressBarsPageState extends State<ProgressBarsPage> {
   }
 
   Widget customProgressBar({
-    required BuildContext context,
-}){return Container();}
+    required BuildContext context,double? conHeight,String? text}){
+    return Container(
+      height: conHeight,decoration: BoxDecoration(color: Theme.of(context).secondaryHeaderColor,borderRadius: BorderRadius.circular(1.w)),
+      child: Column(
+        children: [
+          Padding(padding:EdgeInsets.only(top: 2.w),
+              child: Center(child: Text(text ?? "",style: TextStyle(color: Theme.of(context).primaryColorDark,fontSize: 14.sp),))),
+          Padding(padding: EdgeInsets.only(top: 4.w),
+            child: Container(height: 10.h,width: 20.w,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColorDark,
+                  borderRadius: BorderRadius.circular(2.w),
+                    boxShadow: [BoxShadow(color: Theme.of(context).hoverColor,blurRadius: 3.0,blurStyle: BlurStyle.outer)]
+                ),
+              child:Center(
+                child: SpinKitWave(
+                  color: Theme.of(context).secondaryHeaderColor,
+                  size: 5.h,type: SpinKitWaveType.start,
+                  duration: Duration(milliseconds: 2000),
+                ),
+              )
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
