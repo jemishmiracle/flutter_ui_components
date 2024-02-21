@@ -21,8 +21,6 @@ class _ProfilewithTabsState extends State<ProfilewithTabs> with SingleTickerProv
   @override
   Widget build(BuildContext context) {
 
-    final List<String> tab = <String>["ABOUT","POSTS"];
-
     List profileData = [
       SizedBox(height: 9.h,
         child: Column(children: [Text("Photos",style: TextStyle(color: Theme.of(context).bottomAppBarColor),), Text("160",style: TextStyle(color: Theme.of(context).primaryColorDark,fontWeight: FontWeight.bold),)],),),
@@ -49,13 +47,14 @@ class _ProfilewithTabsState extends State<ProfilewithTabs> with SingleTickerProv
     return Scaffold(
       body: SafeArea(
         child: NestedScrollView(
-          floatHeaderSlivers: true,
+          floatHeaderSlivers: false,
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) =>
           [
             SliverAppBar(
-              expandedHeight: 49.h,toolbarHeight: 10.h,
+              expandedHeight: 49.h,collapsedHeight: 9.h,
               bottom:TabBar(controller: tabController, labelStyle: TextStyle(color: Theme.of(context).primaryColorDark), tabs: [Tab(text: "ABOUT",),Tab(text: "POSTS",)],),
               backgroundColor: Theme.of(context).secondaryHeaderColor,
+              automaticallyImplyLeading: false,
               leading: IconButton(
                 onPressed: () => Get.back(),
                 icon: Icon(Icons.arrow_back,color: Theme.of(context).primaryColorDark,),),
@@ -96,7 +95,7 @@ class _ProfilewithTabsState extends State<ProfilewithTabs> with SingleTickerProv
                     ),
                   ],),
               ),
-              snap: true,pinned: true,floating: true,
+              snap: false,pinned: true,floating: false,
           ),],
           body:TabBarView(controller: tabController,
             children: [Padding(padding:  EdgeInsets.all(3.w),
@@ -108,7 +107,8 @@ class _ProfilewithTabsState extends State<ProfilewithTabs> with SingleTickerProv
                         boxShadow: [BoxShadow(color: Theme.of(context).shadowColor,blurRadius: 1.0,blurStyle: BlurStyle.outer)],
                       ),
                       child:ListView.builder(
-                          itemCount: profileTabList.length,physics: NeverScrollableScrollPhysics(),
+                          itemCount: profileTabList.length,
+                          physics: NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) {
                             return ListTile(
                               leading: CircleAvatar(backgroundColor: Colors.transparent,

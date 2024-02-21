@@ -32,13 +32,15 @@ class FirebasePhoneAuthentication extends StatelessWidget {
                       Padding(padding: EdgeInsets.only(top: 3.w,left: 2.w),
                         child:Text(text,maxLines: 2,style: TextStyle(fontSize: 12.sp),),),
                       Padding(padding: EdgeInsets.all(2.w),
-                        child: TextFormField(
-                          initialValue: '+12 1234567890',
+                        child: TextField(
                           decoration: InputDecoration(
-                            hintText: 'Phone',labelText: 'Phone',labelStyle: TextStyle(color: Theme.of(context).bottomAppBarColor),
-                            hintStyle: TextStyle(color: Theme.of(context).bottomAppBarColor),
+                            labelText: 'Phone',labelStyle: TextStyle(color: Theme.of(context).bottomAppBarColor),
+                            hintText: '+12 1234567890',hintStyle: TextStyle(color: Theme.of(context).hoverColor),
                             icon: Icon(Icons.call,color: Theme.of(context).bottomAppBarColor,size: 5.w,),
+                            enabledBorder:UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).dividerColor)),
+                            focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).dividerColor))
                           ),
+                          keyboardType: TextInputType.phone,
                         ),
                       ),
                       Padding(padding: EdgeInsets.all(5.w),

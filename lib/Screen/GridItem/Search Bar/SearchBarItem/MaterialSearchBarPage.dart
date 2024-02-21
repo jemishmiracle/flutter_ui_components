@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_rx/src/rx_workers/utils/debouncer.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter_material_search_bar/flutter_material_search_bar.dart';
 
@@ -15,7 +13,7 @@ class _MaterialSearchBarPageState extends State<MaterialSearchBarPage> {
   Icon actionIcon = Icon(Icons.search,color: Colors.white,);
   final MaterialSearchBarController controller = MaterialSearchBarController();
   final TextEditingController editingController = TextEditingController();
-  bool micShow =false;
+  bool micShow =false; bool searchLists = false;
   String titleText =
       "                Press the 🔍	icon in the AppBar""\n"
       "and search for an integer between 0 and 100,000.""\n""\n""\n""\n"
@@ -26,10 +24,6 @@ class _MaterialSearchBarPageState extends State<MaterialSearchBarPage> {
       "is not a valid integer between 0 and 100,000.""\n"
       "                               Try again.";
 
-  List<searchAppbarData> searchList = [
-    searchAppbarData(icon: Icons.history, title: 10),
-    searchAppbarData(icon: Icons.history, title: 55),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -49,16 +43,8 @@ class _MaterialSearchBarPageState extends State<MaterialSearchBarPage> {
           textField: TextField(
             onChanged: (value) {
               setState(() {
-                if(searchList.isNotEmpty){
-                  List.generate(searchList.length, (index) =>
-                      ListTile(leading: Icon(searchList[index].icon,color: Theme.of(context).hoverColor,),
-                        title: Text(searchList[index].title.toString()),));
-                }
-                else{
-                  searchList.clear();
-                }
+                searchLists = !searchLists;
               });
-
             },
             controller: editingController,
             cursorColor: Theme.of(context).secondaryHeaderColor,
@@ -79,12 +65,14 @@ class _MaterialSearchBarPageState extends State<MaterialSearchBarPage> {
             icon: Icon(micShow ? Icons.close:Icons.mic,color: Theme.of(context).hoverColor,),
             onPressed: () {
               editingController.text = 'TODO: implement voice input';
-              searchList.clear();
+              // searchList.clear();
               setState(() {micShow = !micShow;});
             },),
         ),
-        body: SafeArea(child: searchData(context: context,text: micShow ?  micText : titleText,
-            textColor: micShow ? Theme.of(context).bottomAppBarColor : Theme.of(context).secondaryHeaderColor),),
+        body: SafeArea(child:
+          searchData(context: context,text: micShow ?  micText : titleText,
+            textColor: micShow ? Theme.of(context).bottomAppBarColor : Theme.of(context).secondaryHeaderColor)
+        ),
       ),
     );
   }
@@ -157,4 +145,30 @@ class searchAppbarData {
     required this.icon,
     required this.title,
   });
+}
+
+class SearchPage extends StatefulWidget {
+  @override
+  State<SearchPage> createState() => _SearchPageState();
+}
+
+class _SearchPageState extends State<SearchPage> {
+  List<searchAppbarData> searchList = [
+    searchAppbarData(icon: Icons.history, title: 10),
+    searchAppbarData(icon: Icons.history, title: 55),
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: ListView.builder(
+          itemCount: searchList.length,
+          itemBuilder: (context, index) =>
+              ListTile(
+                title: Text(searchList[index].title.toString(),),
+                leading: Icon(searchList[index].icon,),
+              ),),
+      ),
+    );
+  }
 }
