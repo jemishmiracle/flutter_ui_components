@@ -171,7 +171,7 @@ class ElevatedButtonPage extends StatelessWidget {
       child: ElevatedButton(
         onPressed: disableButtons ? (){} :null,
         style: ButtonStyle(
-          backgroundColor: MaterialStatePropertyAll(Theme.of(context).selectedRowColor),
+          backgroundColor: MaterialStatePropertyAll(Theme.of(context).toggleableActiveColor),
           shape: MaterialStatePropertyAll(RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(1.w),
           )),

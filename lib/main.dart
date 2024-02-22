@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
               bottomAppBarColor: Colors.black,
               cardColor: Colors.grey,
               dividerColor: Colors.red,
-              selectedRowColor: Color(0xffDBDBDB),
+              toggleableActiveColor:Color(0xffDBDBDB) ,
               errorColor: Color(0xffC6E7CA),
               focusColor: Color(0xff292C3C),
               disabledColor: Colors.blue,
@@ -37,11 +37,33 @@ class MyApp extends StatelessWidget {
               hintColor: Colors.pink,
               canvasColor: Color(0xff386171),
               indicatorColor: Color(0xffA85400),
-              toggleableActiveColor: Color(0xff009886),
               highlightColor: Color(0xff607B8B),
               hoverColor: Color(0xff6E6E6E),
               splashColor: Color(0xffBABABA),
-              colorScheme: ColorScheme.light(primary: Color(0x85E98929),),
+              colorScheme: ColorScheme.light(primary: Color(0x85E98929),), checkboxTheme: CheckboxThemeData(
+ fillColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+ if (states.contains(MaterialState.disabled)) { return null; }
+ if (states.contains(MaterialState.selected)) { return Color(0xff009886); }
+ return null;
+ }),
+ ), radioTheme: RadioThemeData(
+ fillColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+ if (states.contains(MaterialState.disabled)) { return null; }
+ if (states.contains(MaterialState.selected)) { return Color(0xff009886); }
+ return null;
+ }),
+ ), switchTheme: SwitchThemeData(
+ thumbColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+ if (states.contains(MaterialState.disabled)) { return null; }
+ if (states.contains(MaterialState.selected)) { return Color(0xff009886); }
+ return null;
+ }),
+ trackColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+ if (states.contains(MaterialState.disabled)) { return null; }
+ if (states.contains(MaterialState.selected)) { return Color(0xff009886); }
+ return null;
+ }),
+ ),
             ),
             getPages:Screens.routes,
             initialRoute: Routes.homeScreen,

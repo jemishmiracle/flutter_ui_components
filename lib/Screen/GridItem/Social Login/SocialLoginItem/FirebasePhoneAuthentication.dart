@@ -39,8 +39,7 @@ class FirebasePhoneAuthentication extends StatelessWidget {
                             icon: Icon(Icons.call,color: Theme.of(context).bottomAppBarColor,size: 5.w,),
                             enabledBorder:UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).dividerColor)),
                             focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).dividerColor))
-                          ),
-                          keyboardType: TextInputType.phone,
+                          ), keyboardType: TextInputType.phone,
                         ),
                       ),
                       Padding(padding: EdgeInsets.all(5.w),

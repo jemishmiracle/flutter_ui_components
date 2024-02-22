@@ -259,7 +259,7 @@ class ElevatedButtonwithbasicproperty extends StatelessWidget {
         child: TextButton(
             onPressed: disableButtons ? (){} :null,
             style: ButtonStyle(
-              backgroundColor: MaterialStatePropertyAll(Theme.of(context).selectedRowColor),
+              backgroundColor: MaterialStatePropertyAll(Theme.of(context).toggleableActiveColor),
               shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(1.w),
               )),
@@ -277,7 +277,7 @@ class ElevatedButtonwithbasicproperty extends StatelessWidget {
         child: TextButton(
             onPressed: disableButtons ? (){} :null,
             style: ButtonStyle(
-              backgroundColor: MaterialStatePropertyAll(Theme.of(context).selectedRowColor),
+              backgroundColor: MaterialStatePropertyAll(Theme.of(context).toggleableActiveColor),
               shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(1.w),
               )),

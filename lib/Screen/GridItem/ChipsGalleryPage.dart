@@ -76,9 +76,9 @@ class _ChipsGalleryPageState extends State<ChipsGalleryPage> {
                         child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(padding: EdgeInsets.only(left: 4.w),
-                              child: InputChips(conColor: Theme.of(context).selectedRowColor, title: "Smith Jhan", conWidth:36.w, context: context, iconColor: Theme.of(context).bottomAppBarColor,conBorderRadius: 20.w),
+                              child: InputChips(conColor: Theme.of(context).toggleableActiveColor, title: "Smith Jhan", conWidth:36.w, context: context, iconColor: Theme.of(context).bottomAppBarColor,conBorderRadius: 20.w),
                             ),
-                            InputChips(conColor: Theme.of(context).selectedRowColor, title: "InputChip Label", conWidth:44.w,context: context, iconColor: Theme.of(context).bottomAppBarColor,conBorderRadius: 1.w),
+                            InputChips(conColor: Theme.of(context).toggleableActiveColor, title: "InputChip Label", conWidth:44.w,context: context, iconColor: Theme.of(context).bottomAppBarColor,conBorderRadius: 1.w),
                             Padding(padding: EdgeInsets.only(left: 4.w),
                               child: InputChips(conColor: Theme.of(context).secondaryHeaderColor, title: "Smith Jhan", conWidth:36.w,context: context, textColor: Theme.of(context).primaryColorDark, iconColor: Theme.of(context).primaryColorDark,conBorderRadius: 20.w),
                             ),
@@ -135,7 +135,7 @@ class _ChipsGalleryPageState extends State<ChipsGalleryPage> {
                               child: ChoiceChip(
                                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.w)),
                                 label: Text(fruits[index],style: TextStyle(fontSize: 10.sp),),
-                                side: BorderSide.none, backgroundColor: Theme.of(context).selectedRowColor,
+                                side: BorderSide.none, backgroundColor: Theme.of(context).toggleableActiveColor,
                                 showCheckmark: true,selectedColor: Theme.of(context).backgroundColor,
                                 selected: select.contains(fruits[index]),
                                 onSelected: (value) {
@@ -220,7 +220,7 @@ class _ChipsGalleryPageState extends State<ChipsGalleryPage> {
         height: 4.h,width: 29.w,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(conBorderRadius),
-            color: Theme.of(context).selectedRowColor,),
+            color: Theme.of(context).toggleableActiveColor,),
         child: Padding(padding:EdgeInsets.only(left: 1.w),
           child: Row(
             children: [
